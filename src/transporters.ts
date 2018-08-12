@@ -9,7 +9,7 @@ import * as createDebug from 'debug';
 import { NO_CONTENT } from 'http-status';
 import * as fetch from 'isomorphic-fetch';
 
-const debug = createDebug('pecorino-api-abstract-client:transporters');
+const debug = createDebug('chevre-api-abstract-client:*');
 // tslint:disable-next-line
 const pkg = require('../package.json');
 
@@ -36,7 +36,7 @@ export class RequestError extends Error {
         // tslint:disable-next-line:no-single-line-block-comment
         super(message)/* istanbul ignore next */;
 
-        this.name = 'PecorinoRequestError';
+        this.name = 'ChevreRequestError';
     }
 }
 
@@ -66,7 +66,7 @@ export class DefaultTransporter implements Transporter {
     /**
      * Default user agent.
      */
-    public static readonly USER_AGENT: string = `pecorino-api-javascript-client/${pkg.version}`;
+    public static readonly USER_AGENT: string = `chevre-api-javascript-client/${pkg.version}`;
 
     public expectedStatusCodes: number[];
 
