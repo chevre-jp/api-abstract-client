@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - イベントサービスを追加。
 - 予約取引サービスを追加。
+- 場所サービスを追加。
 
 ### Changed
 

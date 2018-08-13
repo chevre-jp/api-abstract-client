@@ -7,6 +7,7 @@ import * as factory from '@chevre/factory';
 import { AuthClient } from './auth/authClient';
 
 import { EventService } from './service/event';
+import { PlaceService } from './service/place';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
 
@@ -23,6 +24,10 @@ export namespace service {
      * イベントサービス
      */
     export class Event extends EventService { }
+    /**
+     * 場所サービス
+     */
+    export class Place extends PlaceService { }
     export namespace transaction {
         /**
          * 予約取引サービス
