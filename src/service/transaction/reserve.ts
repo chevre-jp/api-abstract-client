@@ -25,11 +25,11 @@ export class ReserveTransactionService extends Service {
      */
     public async confirm(params: {
         transactionId: string;
-    }): Promise<factory.transaction.reserve.IResult> {
+    }): Promise<void> {
         return this.fetch({
             uri: `/transactions/reserve/${params.transactionId}/confirm`,
             method: 'PUT',
-            expectedStatusCodes: [OK],
+            expectedStatusCodes: [NO_CONTENT],
             body: {}
         });
     }
