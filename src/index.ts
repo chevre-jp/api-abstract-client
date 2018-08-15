@@ -9,6 +9,7 @@ import { AuthClient } from './auth/authClient';
 import { EventService } from './service/event';
 import { PlaceService } from './service/place';
 import { ReservationService } from './service/reservation';
+import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
 
@@ -34,6 +35,10 @@ export namespace service {
      */
     export class Reservation extends ReservationService { }
     export namespace transaction {
+        /**
+         * 予約キャンセル取引サービス
+         */
+        export class CancelReservation extends CancelReservationTransactionService { }
         /**
          * 予約取引サービス
          */
