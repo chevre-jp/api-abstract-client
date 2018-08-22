@@ -20,4 +20,17 @@ export class ReservationService extends Service {
             expectedStatusCodes: [OK]
         });
     }
+    /**
+     * IDで上映イベント予約検索
+     */
+    public async findScreeningEventReservationById(params: {
+        id: string;
+    }): Promise<factory.reservation.event.IReservation<factory.event.screeningEvent.IEvent>> {
+        return this.fetch({
+            uri: `/reservations/eventReservation/screeningEvent/${params.id}`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        });
+    }
 }
