@@ -1,5 +1,5 @@
 import * as factory from '@chevre/factory';
-import { OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../service';
 
@@ -7,6 +7,19 @@ import { Service } from '../service';
  * イベントサービス
  */
 export class EventService extends Service {
+    /**
+     * 上映イベントシリーズ作成
+     */
+    public async createScreeningEventSeries(
+        params: factory.event.screeningEventSeries.IAttributes
+    ): Promise<factory.event.screeningEventSeries.IEvent> {
+        return this.fetch({
+            uri: '/events/screeningEventSeries',
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [CREATED]
+        });
+    }
     /**
      * 上映イベントシリーズ検索
      */
@@ -18,6 +31,57 @@ export class EventService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
+        });
+    }
+    /**
+     * IDで上映イベントシリーズ検索
+     */
+    public async findScreeningEventSeriesById(params: {
+        id: string;
+    }): Promise<factory.event.screeningEventSeries.IEvent> {
+        return this.fetch({
+            uri: `/events/screeningEventSeries/${params.id}`,
+            method: 'GET',
+            expectedStatusCodes: [OK]
+        });
+    }
+    /**
+     * 上映イベントシリーズ更新
+     */
+    public async updateScreeningEventSeries(params: {
+        id: string;
+        attributes: factory.event.screeningEvent.IAttributes;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/events/screeningEventSeries/${params.id}`,
+            method: 'PUT',
+            body: params.attributes,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+    /**
+     * 上映イベントシリーズ削除
+     */
+    public async deleteScreeningEventSeries(params: {
+        id: string;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/events/screeningEventSeries/${params.id}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+    /**
+     * 上映イベント作成
+     */
+    public async createScreeningEvent(
+        params: factory.event.screeningEvent.IAttributes
+    ): Promise<factory.event.screeningEvent.IEvent> {
+        return this.fetch({
+            uri: '/events/screeningEvent',
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [CREATED]
         });
     }
     /**
@@ -34,9 +98,47 @@ export class EventService extends Service {
         });
     }
     /**
+     * IDで上映イベント検索
+     */
+    public async findScreeningEventById(params: {
+        id: string;
+    }): Promise<factory.event.screeningEvent.IEvent> {
+        return this.fetch({
+            uri: `/events/screeningEvent/${params.id}`,
+            method: 'GET',
+            expectedStatusCodes: [OK]
+        });
+    }
+    /**
+     * 上映イベント更新
+     */
+    public async updateScreeningEvent(params: {
+        id: string;
+        attributes: factory.event.screeningEvent.IAttributes;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/events/screeningEvent/${params.id}`,
+            method: 'PUT',
+            body: params.attributes,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+    /**
+     * 上映イベント削除
+     */
+    public async deleteScreeningEvent(params: {
+        id: string;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/events/screeningEvent/${params.id}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+    /**
      * 上映イベントに対する券種検索
      */
-    public async searchScreeningEventTicketTyps(params: {
+    public async searchScreeningEventTicketTypes(params: {
         eventId: string;
     }): Promise<factory.ticketType.ITicketType[]> {
         return this.fetch({

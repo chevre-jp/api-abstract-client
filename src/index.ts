@@ -6,6 +6,7 @@ import * as factory from '@chevre/factory';
 
 import { AuthClient } from './auth/authClient';
 
+import { CreativeWorkService } from './service/creativeWork';
 import { EventService } from './service/event';
 import { PlaceService } from './service/place';
 import { ReservationService } from './service/reservation';
@@ -22,6 +23,10 @@ export import transporters = transporters;
 export abstract class Auth extends AuthClient { }
 
 export namespace service {
+    /**
+     * 作品サービス
+     */
+    export class CreativeWork extends CreativeWorkService { }
     /**
      * イベントサービス
      */

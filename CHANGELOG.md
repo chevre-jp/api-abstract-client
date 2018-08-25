@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 予約キャンセル取引サービスを追加。
 - 場所サービスを追加。
 - 予約サービスを追加。
+- 作品サービスを追加。
 
 ### Changed
 
