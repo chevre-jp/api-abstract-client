@@ -50,7 +50,7 @@ export class EventService extends Service {
      */
     public async updateScreeningEventSeries(params: {
         id: string;
-        attributes: factory.event.screeningEvent.IAttributes;
+        attributes: factory.event.screeningEventSeries.IAttributes;
     }): Promise<void> {
         return this.fetch({
             uri: `/events/screeningEventSeries/${params.id}`,
