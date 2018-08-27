@@ -3,7 +3,6 @@
  * transporters
  */
 import * as createDebug from 'debug';
-import { NO_CONTENT } from 'http-status';
 import * as fetch from 'isomorphic-fetch';
 
 const debug = createDebug('chevre-api-abstract-client:*');
@@ -14,11 +13,9 @@ const pkg = require('../package.json');
  * トランスポーター抽象クラス
  */
 export abstract class Transporter {
-    public abstract async fetch(url: string, options: RequestInit): Promise<any>;
+    public abstract async fetch(url: string, options: RequestInit): Promise<Response>;
 }
-
-export type IBodyResponseCallback = Promise<any>;
-
+export type IBodyResponseCallback = Promise<Response>;
 /**
  * RequestError
  */
@@ -31,22 +28,6 @@ export class RequestError extends Error {
         super(message)/* istanbul ignore next */;
 
         this.name = 'ChevreRequestError';
-    }
-}
-
-/**
- * スタブトランポーター
- */
-export class StubTransporter implements Transporter {
-    public body: any;
-    constructor(body: any) {
-        this.body = body;
-    }
-
-    public async fetch(url: string, options: RequestInit) {
-        debug('fetching...', url, options);
-
-        return this.body;
     }
 }
 
@@ -96,7 +77,7 @@ export class DefaultTransporter implements Transporter {
     /**
      * Wraps the response callback.
      */
-    private async wrapCallback(response: Response): Promise<any> {
+    private async wrapCallback(response: Response): Promise<Response> {
         let err: RequestError = new RequestError('An unexpected error occurred');
 
         debug('request processed', response.status);
@@ -122,13 +103,7 @@ export class DefaultTransporter implements Transporter {
                 err.errors = [];
             }
         } else {
-            if (response.status === NO_CONTENT) {
-                // consider 204
-                return;
-            } else {
-                // consider 200,201
-                return response.json();
-            }
+            return response;
         }
 
         throw err;

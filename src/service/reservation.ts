@@ -18,7 +18,7 @@ export class ReservationService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * IDで上映イベント予約検索
@@ -31,6 +31,6 @@ export class ReservationService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
 }

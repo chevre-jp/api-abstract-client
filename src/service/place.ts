@@ -18,7 +18,7 @@ export class PlaceService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 劇場コードで劇場取得
@@ -30,6 +30,6 @@ export class PlaceService extends Service {
             uri: `/places/movieTheater/${params.branchCode}`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
 }

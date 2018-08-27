@@ -7,7 +7,6 @@ import {
     CREATED,
     FORBIDDEN,
     INTERNAL_SERVER_ERROR,
-    NO_CONTENT,
     NOT_FOUND,
     NOT_IMPLEMENTED,
     OK,
@@ -49,27 +48,7 @@ describe('fetch()', () => {
                 .get('/uri')
                 .reply(statusCode, body);
 
-            const result = await transporter.fetch(`${API_ENDPOINT}/uri`, {});
-
-            assert.deepEqual(result, body);
-            sandbox.verify();
-            assert(scope.isDone());
-        });
-    });
-
-    // tslint:disable-next-line:mocha-no-side-effect-code
-    [NO_CONTENT].forEach((statusCode) => {
-        it(`次のステータスコードが返却されれば、レスポンスはundefinedのはず ${statusCode}`, async () => {
-            const body = undefined;
-
-            const transporter = new DefaultTransporter([statusCode]);
-
-            scope = nock(API_ENDPOINT)
-                .get('/uri')
-                .reply(statusCode, body);
-
-            const result = await transporter.fetch(`${API_ENDPOINT}/uri`, {});
-
+            const result = await transporter.fetch(`${API_ENDPOINT}/uri`, {}).then(async (res) => res.json());
             assert.deepEqual(result, body);
             sandbox.verify();
             assert(scope.isDone());

@@ -18,19 +18,27 @@ export class TicketTypeService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 券種グループ検索
      */
     public async searchTicketTypeGroups(
-        params: {}
-    ): Promise<factory.ticketType.ITicketTypeGroup[]> {
+        params: factory.ticketType.ITicketTypeGroupSearchConditions
+    ): Promise<{
+        totalCount: number;
+        data: factory.ticketType.ITicketTypeGroup[];
+    }> {
         return this.fetch({
             uri: '/ticketTypeGroups',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('Total-Count')),
+                data: await response.json()
+            };
         });
     }
     /**
@@ -43,13 +51,13 @@ export class TicketTypeService extends Service {
             uri: `/ticketTypeGroups/${params.id}`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 券種グループ更新
      */
     public async updateTicketTypeGroup(params: factory.ticketType.ITicketTypeGroup): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/ticketTypeGroups/${params.id}`,
             method: 'PUT',
             body: params,
@@ -62,7 +70,7 @@ export class TicketTypeService extends Service {
     public async deleteTicketTypeGroup(params: {
         id: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/ticketTypeGroups/${params.id}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
@@ -79,19 +87,27 @@ export class TicketTypeService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 券種検索
      */
     public async searchTicketTypes(
-        params: {}
-    ): Promise<factory.ticketType.ITicketType[]> {
+        params: factory.ticketType.ITicketTypeSearchConditions
+    ): Promise<{
+        totalCount: number;
+        data: factory.ticketType.ITicketType[];
+    }> {
         return this.fetch({
             uri: '/ticketTypes',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('Total-Count')),
+                data: await response.json()
+            };
         });
     }
     /**
@@ -104,13 +120,13 @@ export class TicketTypeService extends Service {
             uri: `/ticketTypes/${params.id}`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 券種更新
      */
     public async updateTicketType(params: factory.ticketType.ITicketType): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/ticketTypes/${params.id}`,
             method: 'PUT',
             body: params,
@@ -123,7 +139,7 @@ export class TicketTypeService extends Service {
     public async deleteTicketType(params: {
         id: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/ticketTypes/${params.id}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]

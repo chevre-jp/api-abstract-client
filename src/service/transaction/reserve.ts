@@ -18,7 +18,7 @@ export class ReserveTransactionService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 取引確定
@@ -26,7 +26,7 @@ export class ReserveTransactionService extends Service {
     public async confirm(params: {
         transactionId: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/transactions/reserve/${params.transactionId}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
@@ -39,7 +39,7 @@ export class ReserveTransactionService extends Service {
     public async cancel(params: {
         transactionId: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/transactions/reserve/${params.transactionId}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],

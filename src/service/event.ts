@@ -18,7 +18,7 @@ export class EventService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 上映イベントシリーズ検索
@@ -31,7 +31,7 @@ export class EventService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * IDで上映イベントシリーズ検索
@@ -43,7 +43,7 @@ export class EventService extends Service {
             uri: `/events/screeningEventSeries/${params.id}`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 上映イベントシリーズ更新
@@ -52,7 +52,7 @@ export class EventService extends Service {
         id: string;
         attributes: factory.event.screeningEventSeries.IAttributes;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/events/screeningEventSeries/${params.id}`,
             method: 'PUT',
             body: params.attributes,
@@ -65,7 +65,7 @@ export class EventService extends Service {
     public async deleteScreeningEventSeries(params: {
         id: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/events/screeningEventSeries/${params.id}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
@@ -82,7 +82,7 @@ export class EventService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 上映イベント検索
@@ -95,7 +95,7 @@ export class EventService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * IDで上映イベント検索
@@ -107,7 +107,7 @@ export class EventService extends Service {
             uri: `/events/screeningEvent/${params.id}`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 上映イベント更新
@@ -116,7 +116,7 @@ export class EventService extends Service {
         id: string;
         attributes: factory.event.screeningEvent.IAttributes;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/events/screeningEvent/${params.id}`,
             method: 'PUT',
             body: params.attributes,
@@ -129,7 +129,7 @@ export class EventService extends Service {
     public async deleteScreeningEvent(params: {
         id: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/events/screeningEvent/${params.id}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
@@ -145,7 +145,7 @@ export class EventService extends Service {
             uri: `/events/screeningEvent/${params.eventId}/ticketTypes`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 上映イベントに対するオファー検索
@@ -157,6 +157,6 @@ export class EventService extends Service {
             uri: `/events/screeningEvent/${params.eventId}/offers`,
             method: 'GET',
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
 }
