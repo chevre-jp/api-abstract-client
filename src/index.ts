@@ -10,6 +10,7 @@ import { CreativeWorkService } from './service/creativeWork';
 import { EventService } from './service/event';
 import { PlaceService } from './service/place';
 import { ReservationService } from './service/reservation';
+import { TicketTypeService } from './service/ticketType';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
@@ -39,6 +40,10 @@ export namespace service {
      * 予約サービス
      */
     export class Reservation extends ReservationService { }
+    /**
+     * 券種サービス
+     */
+    export class TicketType extends TicketTypeService { }
     export namespace transaction {
         /**
          * 予約キャンセル取引サービス

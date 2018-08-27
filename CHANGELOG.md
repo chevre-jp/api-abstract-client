@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 場所サービスを追加。
 - 予約サービスを追加。
 - 作品サービスを追加。
+- 券種サービスを追加。
 
 ### Changed
 
