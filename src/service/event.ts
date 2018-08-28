@@ -25,13 +25,21 @@ export class EventService extends Service {
      */
     public async searchScreeningEventSeries(
         params: factory.event.screeningEventSeries.ISearchConditions
-    ): Promise<factory.event.screeningEventSeries.IEvent[]> {
+    ): Promise<{
+        totalCount: number;
+        data: factory.event.screeningEventSeries.IEvent[];
+    }> {
         return this.fetch({
             uri: '/events/screeningEventSeries',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('Total-Count')),
+                data: await response.json()
+            };
+        });
     }
     /**
      * IDで上映イベントシリーズ検索
@@ -89,13 +97,21 @@ export class EventService extends Service {
      */
     public async searchScreeningEvents(
         params: factory.event.screeningEvent.ISearchConditions
-    ): Promise<factory.event.screeningEvent.IEvent[]> {
+    ): Promise<{
+        totalCount: number;
+        data: factory.event.screeningEvent.IEvent[];
+    }> {
         return this.fetch({
             uri: '/events/screeningEvent',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('Total-Count')),
+                data: await response.json()
+            };
+        });
     }
     /**
      * IDで上映イベント検索
