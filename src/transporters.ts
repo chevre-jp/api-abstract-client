@@ -5,7 +5,7 @@
 import * as createDebug from 'debug';
 import * as fetch from 'isomorphic-fetch';
 
-const debug = createDebug('chevre-api-abstract-client:*');
+const debug = createDebug('chevre-api-abstract-client:transporters');
 // tslint:disable-next-line
 const pkg = require('../package.json');
 
