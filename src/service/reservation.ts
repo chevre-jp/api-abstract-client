@@ -12,13 +12,21 @@ export class ReservationService extends Service {
      */
     public async searchScreeningEventReservations(
         params: factory.reservation.event.ISearchConditions
-    ): Promise<factory.reservation.event.IReservation<factory.event.screeningEvent.IEvent>[]> {
+    ): Promise<{
+        totalCount: number;
+        data: factory.reservation.event.IReservation<factory.event.screeningEvent.IEvent>[];
+    }> {
         return this.fetch({
             uri: '/reservations/eventReservation/screeningEvent',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('Total-Count')),
+                data: await response.json()
+            };
+        });
     }
     /**
      * IDで上映イベント予約検索

@@ -11,14 +11,22 @@ export class PlaceService extends Service {
      * 劇場検索
      */
     public async searchMovieTheaters(
-        params: {}
-    ): Promise<factory.place.movieTheater.IPlaceWithoutScreeningRoom[]> {
+        params: factory.place.movieTheater.ISearchConditions
+    ): Promise<{
+        totalCount: number;
+        data: factory.place.movieTheater.IPlaceWithoutScreeningRoom[];
+    }> {
         return this.fetch({
             uri: '/places/movieTheater',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('Total-Count')),
+                data: await response.json()
+            };
+        });
     }
     /**
      * 劇場コードで劇場取得
