@@ -36,7 +36,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('Total-Count')),
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
@@ -105,7 +105,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('Total-Count')),
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
