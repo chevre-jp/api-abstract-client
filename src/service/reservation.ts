@@ -1,6 +1,6 @@
-import * as factory from '@chevre/factory';
 import { OK } from 'http-status';
 
+import * as factory from '../factory';
 import { Service } from '../service';
 
 /**

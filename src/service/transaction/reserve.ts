@@ -1,6 +1,6 @@
-import * as factory from '@chevre/factory';
 import { NO_CONTENT, OK } from 'http-status';
 
+import * as factory from '../../factory';
 import { Service } from '../../service';
 
 /**
@@ -25,12 +25,14 @@ export class ReserveTransactionService extends Service {
      */
     public async confirm(params: {
         transactionId: string;
+        issuedBy?: factory.reservation.IUnderName;
+        underName?: factory.reservation.IUnderName;
     }): Promise<void> {
         await this.fetch({
             uri: `/transactions/reserve/${params.transactionId}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
-            body: {}
+            body: params
         });
     }
     /**
