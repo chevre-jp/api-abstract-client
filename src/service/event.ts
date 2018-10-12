@@ -152,18 +152,6 @@ export class EventService extends Service {
         });
     }
     /**
-     * 上映イベントに対する券種検索
-     */
-    public async searchScreeningEventTicketTypes(params: {
-        eventId: string;
-    }): Promise<factory.ticketType.ITicketType[]> {
-        return this.fetch({
-            uri: `/events/screeningEvent/${params.eventId}/ticketTypes`,
-            method: 'GET',
-            expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
-    }
-    /**
      * 上映イベントに対するオファー検索
      */
     public async searchScreeningEventOffers(params: {
@@ -171,6 +159,18 @@ export class EventService extends Service {
     }): Promise<factory.event.screeningEvent.IScreeningRoomSectionOffer[]> {
         return this.fetch({
             uri: `/events/screeningEvent/${params.eventId}/offers`,
+            method: 'GET',
+            expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
+    /**
+     * 上映イベントに対するチケットオファー検索
+     */
+    public async searchScreeningEventTicketOffers(params: {
+        eventId: string;
+    }): Promise<factory.event.screeningEvent.ITicketOffer[]> {
+        return this.fetch({
+            uri: `/events/screeningEvent/${params.eventId}/offers/ticket`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
