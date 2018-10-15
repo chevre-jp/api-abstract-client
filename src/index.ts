@@ -9,6 +9,7 @@ import { AuthClient } from './auth/authClient';
 import { CreativeWorkService } from './service/creativeWork';
 import { EventService } from './service/event';
 import { PlaceService } from './service/place';
+import { PriceSpecificationService } from './service/priceSpecification';
 import { ReservationService } from './service/reservation';
 import { TicketTypeService } from './service/ticketType';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
@@ -36,6 +37,10 @@ export namespace service {
      * 場所サービス
      */
     export class Place extends PlaceService { }
+    /**
+     * 価格仕様サービス
+     */
+    export class PriceSpecification extends PriceSpecificationService { }
     /**
      * 予約サービス
      */
