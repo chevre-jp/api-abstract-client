@@ -1,4 +1,4 @@
-import { OK } from 'http-status';
+import { NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
 import { Service } from '../service';
@@ -28,6 +28,7 @@ export class ReservationService extends Service {
             };
         });
     }
+
     /**
      * IDで上映イベント予約検索
      */
@@ -40,5 +41,31 @@ export class ReservationService extends Service {
             qs: params,
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
+    }
+
+    /**
+     * 発券する
+     */
+    public async checkInScreeningEvent(params: {
+        id: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/reservations/eventReservation/screeningEvent/${params.id}/checkedIn`,
+            method: 'PUT',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
+     * 入場する
+     */
+    public async attendScreeningEvent(params: {
+        id: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/reservations/eventReservation/screeningEvent/${params.id}/attended`,
+            method: 'PUT',
+            expectedStatusCodes: [NO_CONTENT]
+        });
     }
 }
