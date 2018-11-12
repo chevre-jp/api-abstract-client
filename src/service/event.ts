@@ -20,6 +20,7 @@ export class EventService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
     /**
      * 上映イベントシリーズ検索
      */
@@ -41,6 +42,7 @@ export class EventService extends Service {
             };
         });
     }
+
     /**
      * IDで上映イベントシリーズ検索
      */
@@ -53,6 +55,7 @@ export class EventService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 上映イベントシリーズ更新
      */
@@ -67,18 +70,7 @@ export class EventService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
-    /**
-     * 上映イベントシリーズ削除
-     */
-    public async deleteScreeningEventSeries(params: {
-        id: string;
-    }): Promise<void> {
-        await this.fetch({
-            uri: `/events/screeningEventSeries/${params.id}`,
-            method: 'DELETE',
-            expectedStatusCodes: [NO_CONTENT]
-        });
-    }
+
     /**
      * 上映イベント作成
      */
@@ -92,6 +84,7 @@ export class EventService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
     /**
      * 上映イベント検索
      */
@@ -113,6 +106,7 @@ export class EventService extends Service {
             };
         });
     }
+
     /**
      * IDで上映イベント検索
      */
@@ -125,6 +119,7 @@ export class EventService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 上映イベント更新
      */
@@ -139,18 +134,7 @@ export class EventService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
-    /**
-     * 上映イベント削除
-     */
-    public async deleteScreeningEvent(params: {
-        id: string;
-    }): Promise<void> {
-        await this.fetch({
-            uri: `/events/screeningEvent/${params.id}`,
-            method: 'DELETE',
-            expectedStatusCodes: [NO_CONTENT]
-        });
-    }
+
     /**
      * 上映イベントに対するオファー検索
      */
@@ -163,6 +147,7 @@ export class EventService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 上映イベントに対するチケットオファー検索
      */
