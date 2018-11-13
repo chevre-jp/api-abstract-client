@@ -28,6 +28,7 @@ export class PlaceService extends Service {
             };
         });
     }
+
     /**
      * 劇場コードで劇場取得
      */

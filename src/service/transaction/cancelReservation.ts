@@ -20,27 +20,25 @@ export class CancelReservationTransactionService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 取引確定
      */
-    public async confirm(params: {
-        transactionId: string;
-    }): Promise<void> {
+    public async confirm(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/cancelReservation/${params.transactionId}/confirm`,
+            uri: `/transactions/cancelReservation/${params.id}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}
         });
     }
+
     /**
      * 取引中止
      */
-    public async cancel(params: {
-        transactionId: string;
-    }): Promise<void> {
+    public async cancel(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/cancelReservation/${params.transactionId}/cancel`,
+            uri: `/transactions/cancelReservation/${params.id}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}

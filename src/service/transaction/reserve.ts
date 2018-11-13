@@ -10,9 +10,7 @@ export class ReserveTransactionService extends Service {
     /**
      * 取引を開始する
      */
-    public async start(
-        params: factory.transaction.reserve.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.reserve.ITransaction> {
+    public async start(params: factory.transaction.reserve.IStartParamsWithoutDetail): Promise<factory.transaction.reserve.ITransaction> {
         return this.fetch({
             uri: '/transactions/reserve/start',
             method: 'POST',
@@ -20,29 +18,25 @@ export class ReserveTransactionService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 取引確定
      */
-    public async confirm(params: {
-        transactionId: string;
-        issuedBy?: factory.reservation.IUnderName;
-        underName?: factory.reservation.IUnderName;
-    }): Promise<void> {
+    public async confirm(params: factory.transaction.reserve.IConfirmParams): Promise<void> {
         await this.fetch({
-            uri: `/transactions/reserve/${params.transactionId}/confirm`,
+            uri: `/transactions/reserve/${params.id}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
         });
     }
+
     /**
      * 取引中止
      */
-    public async cancel(params: {
-        transactionId: string;
-    }): Promise<void> {
+    public async cancel(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/reserve/${params.transactionId}/cancel`,
+            uri: `/transactions/reserve/${params.id}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}

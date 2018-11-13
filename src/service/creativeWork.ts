@@ -17,6 +17,7 @@ export class CreativeWorkService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
     public async searchMovies(params: factory.creativeWork.movie.ISearchConditions): Promise<{
         totalCount: number;
         data: factory.creativeWork.movie.ICreativeWork[];
@@ -33,6 +34,7 @@ export class CreativeWorkService extends Service {
             };
         });
     }
+
     public async findMovieByIdentifier(params: {
         identifier: string;
     }): Promise<factory.creativeWork.movie.ICreativeWork> {
@@ -42,6 +44,7 @@ export class CreativeWorkService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     public async updateMovie(params: factory.creativeWork.movie.ICreativeWork): Promise<void> {
         await this.fetch({
             uri: `/creativeWorks/movie/${params.identifier}`,
@@ -50,6 +53,7 @@ export class CreativeWorkService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
     public async deleteMovie(params: {
         identifier: string;
     }): Promise<void> {

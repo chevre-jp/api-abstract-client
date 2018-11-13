@@ -20,6 +20,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
     /**
      * 券種グループ検索
      */
@@ -41,6 +42,7 @@ export class TicketTypeService extends Service {
             };
         });
     }
+
     /**
      * IDで券種グループ検索
      */
@@ -53,6 +55,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 券種グループ更新
      */
@@ -64,6 +67,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
     /**
      * 券種グループ削除
      */
@@ -76,6 +80,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
     /**
      * 券種作成
      */
@@ -89,6 +94,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
     /**
      * 券種検索
      */
@@ -110,6 +116,7 @@ export class TicketTypeService extends Service {
             };
         });
     }
+
     /**
      * IDで券種検索
      */
@@ -122,6 +129,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 券種更新
      */
@@ -133,6 +141,7 @@ export class TicketTypeService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
     /**
      * 券種削除
      */
