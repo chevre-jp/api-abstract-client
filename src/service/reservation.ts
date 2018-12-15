@@ -44,7 +44,23 @@ export class ReservationService extends Service {
     }
 
     /**
+     * 予約IDあるいは予約番号指定でチェックイン(発券)する
+     */
+    public async checkInScreeningEventReservations(params: {
+        id?: string;
+        reservationNumber?: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/reservations/eventReservation/screeningEvent/checkedIn`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 発券する
+     * @deprecated Use checkInScreeningEventReservation
      */
     public async checkInScreeningEvent(params: {
         id: string;
