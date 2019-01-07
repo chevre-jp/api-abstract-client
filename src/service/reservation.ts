@@ -3,12 +3,37 @@ import { NO_CONTENT, OK } from 'http-status';
 import * as factory from '../factory';
 import { Service } from '../service';
 
+export type IReservation = factory.reservation.event.IReservation<factory.event.IEvent<factory.eventType>>;
+
 /**
  * 予約サービス
  */
 export class ReservationService extends Service {
     /**
+     * 予約検索
+     */
+    public async search(
+        params: factory.reservation.event.ISearchConditions
+    ): Promise<{
+        totalCount: number;
+        data: IReservation[];
+    }> {
+        return this.fetch({
+            uri: '/reservations',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
+        });
+    }
+
+    /**
      * 上映イベント予約検索
+     * @deprecated Use search()
      */
     public async searchScreeningEventReservations(
         params: factory.reservation.event.ISearchConditions
@@ -30,7 +55,22 @@ export class ReservationService extends Service {
     }
 
     /**
+     * IDで予約検索
+     */
+    public async findById(params: {
+        id: string;
+    }): Promise<IReservation> {
+        return this.fetch({
+            uri: `/reservations/${params.id}`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
+
+    /**
      * IDで上映イベント予約検索
+     * @deprecated Use findById()
      */
     public async findScreeningEventReservationById(params: {
         id: string;
