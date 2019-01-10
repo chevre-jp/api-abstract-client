@@ -132,6 +132,20 @@ export class AccountTitleService extends Service {
     }
 
     /**
+     * 細目更新
+     */
+    public async update(
+        params: factory.accountTitle.IAccountTitle
+    ): Promise<void> {
+        await this.fetch({
+            uri: `/accountTitles/${params.codeValue}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 細目検索
      */
     public async search(params: factory.accountTitle.ISearchConditions): Promise<{
