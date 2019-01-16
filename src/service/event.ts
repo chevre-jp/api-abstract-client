@@ -12,7 +12,7 @@ export class EventService extends Service {
      */
     public async create<T extends factory.eventType>(
         params: factory.event.IAttributes<T> | factory.event.IAttributes<T>[]
-    ): Promise<factory.event.IEvent<T>> {
+    ): Promise<factory.event.IEvent<T>[]> {
         return this.fetch({
             uri: '/events',
             method: 'POST',
