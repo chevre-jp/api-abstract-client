@@ -1,3 +1,4 @@
 --no-timeouts
 --recursive
 --require ts-node/register
+--exit
