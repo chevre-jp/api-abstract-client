@@ -21,7 +21,7 @@ npm install @chevre/api-abstract-client
 ### Environment variables
 
 | Name    | Required | Value                        | Purpose |
-|---------|----------|------------------------------|---------|
+| ------- | -------- | ---------------------------- | ------- |
 | `DEBUG` | false    | chevre-api-abstract-client:* | Debug   |
 
 ## License
