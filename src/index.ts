@@ -18,6 +18,10 @@ import { CancelReservationTransactionService } from './service/transaction/cance
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
 
+import { BoxOfficeTypeService } from './service/boxOfficeType';
+import { DistributionsService } from './service/distributions';
+import { SubjectService } from './service/subject';
+
 export import factory = factory;
 export import transporters = transporters;
 
@@ -69,4 +73,20 @@ export namespace service {
          */
         export class Reserve extends ReserveTransactionService { }
     }
+
+    /**
+     * 興行区分サービス
+     * @deprecated 東映ローカライズなので、そのうち廃止
+     */
+    export class BoxOfficeType extends BoxOfficeTypeService { }
+    /**
+     * 配給サービス
+     * @deprecated 東映ローカライズなので、そのうち廃止
+     */
+    export class Distributions extends DistributionsService { }
+    /**
+     * 科目サービス
+     * @deprecated 東映ローカライズなので、そのうち廃止
+     */
+    export class Subject extends SubjectService { }
 }
