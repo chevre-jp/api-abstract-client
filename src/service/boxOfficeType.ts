@@ -12,7 +12,7 @@ export class BoxOfficeTypeService extends Service {
      * 興行区分グループ作成
      */
     public async getBoxOfficeTypeList(
-    ): Promise<factory.boxOfficeType.IBoxOfficeType> {
+    ): Promise<factory.serviceType.IServiceType> {
         return this.fetch({
             uri: '/boxOfficeTypes/getBoxOfficeTypeList',
             method: 'GET',
@@ -22,7 +22,7 @@ export class BoxOfficeTypeService extends Service {
     public async createBoxOfficeType(params: {
         id: string;
         name: string;
-    }): Promise<factory.boxOfficeType.IBoxOfficeType> {
+    }): Promise<factory.serviceType.IServiceType> {
         return this.fetch({
             uri: '/boxOfficeTypes/add',
             method: 'POST',
@@ -32,7 +32,7 @@ export class BoxOfficeTypeService extends Service {
     }
     public async searchBoxOfficeType(params: factory.boxOfficeType.ISearchConditions): Promise<{
         totalCount: number;
-        data: factory.boxOfficeType.IBoxOfficeType[];
+        data: factory.serviceType.IServiceType[];
     }> {
         return this.fetch({
             uri: '/boxOfficeTypes/search',

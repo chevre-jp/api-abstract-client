@@ -3,7 +3,7 @@ import { NO_CONTENT, OK } from 'http-status';
 import * as factory from '../factory';
 import { Service } from '../service';
 
-export type IReservation = factory.reservation.event.IReservation<factory.event.IEvent<factory.eventType>>;
+export type IEventReservation = factory.reservation.IReservation<factory.reservationType.EventReservation>;
 
 /**
  * 予約サービス
@@ -12,11 +12,11 @@ export class ReservationService extends Service {
     /**
      * 予約検索
      */
-    public async search(
-        params: factory.reservation.event.ISearchConditions
+    public async search<T extends factory.reservationType>(
+        params: factory.reservation.ISearchConditions<T>
     ): Promise<{
         totalCount: number;
-        data: IReservation[];
+        data: factory.reservation.IReservation<T>[];
     }> {
         return this.fetch({
             uri: '/reservations',
@@ -36,10 +36,10 @@ export class ReservationService extends Service {
      * @deprecated Use search()
      */
     public async searchScreeningEventReservations(
-        params: factory.reservation.event.ISearchConditions
+        params: factory.reservation.ISearchConditions<factory.reservationType.EventReservation>
     ): Promise<{
         totalCount: number;
-        data: factory.reservation.event.IReservation<factory.event.screeningEvent.IEvent>[];
+        data: IEventReservation[];
     }> {
         return this.fetch({
             uri: '/reservations/eventReservation/screeningEvent',
@@ -57,9 +57,9 @@ export class ReservationService extends Service {
     /**
      * IDで予約検索
      */
-    public async findById(params: {
+    public async findById<T extends factory.reservationType>(params: {
         id: string;
-    }): Promise<IReservation> {
+    }): Promise<factory.reservation.IReservation<T>> {
         return this.fetch({
             uri: `/reservations/${params.id}`,
             method: 'GET',
@@ -74,7 +74,7 @@ export class ReservationService extends Service {
      */
     public async findScreeningEventReservationById(params: {
         id: string;
-    }): Promise<factory.reservation.event.IReservation<factory.event.screeningEvent.IEvent>> {
+    }): Promise<IEventReservation> {
         return this.fetch({
             uri: `/reservations/eventReservation/screeningEvent/${params.id}`,
             method: 'GET',
