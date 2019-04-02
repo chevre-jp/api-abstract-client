@@ -1,12 +1,28 @@
-import { OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
 import { Service } from '../service';
+
+export type IMovieTheater = factory.place.movieTheater.IPlace;
 
 /**
  * 場所サービス
  */
 export class PlaceService extends Service {
+    /**
+     * 劇場作成
+     */
+    public async createMovieTheater(
+        params: IMovieTheater
+    ): Promise<IMovieTheater> {
+        return this.fetch({
+            uri: `/places/${factory.placeType.MovieTheater}`,
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [CREATED]
+        }).then(async (response) => response.json());
+    }
+
     /**
      * 劇場検索
      */
@@ -17,7 +33,7 @@ export class PlaceService extends Service {
         data: factory.place.movieTheater.IPlaceWithoutScreeningRoom[];
     }> {
         return this.fetch({
-            uri: '/places/movieTheater',
+            uri: `/places/${factory.placeType.MovieTheater}`,
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
@@ -34,11 +50,36 @@ export class PlaceService extends Service {
      */
     public async findMovieTheaterByBranchCode(params: {
         branchCode: string;
-    }): Promise<factory.place.movieTheater.IPlace> {
+    }): Promise<IMovieTheater> {
         return this.fetch({
-            uri: `/places/movieTheater/${params.branchCode}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${params.branchCode}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
+    }
+
+    /**
+     * 劇場更新
+     */
+    public async updateMovieTheater(params: IMovieTheater): Promise<void> {
+        await this.fetch({
+            uri: `/places/${factory.placeType.MovieTheater}/${params.branchCode}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
+     * 劇場削除
+     */
+    public async deleteMovieTheater(params: {
+        branchCode: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/places/${factory.placeType.MovieTheater}/${params.branchCode}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
     }
 }
