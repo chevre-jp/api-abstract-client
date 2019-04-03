@@ -8,7 +8,7 @@ import { Service } from '../service';
  * @deprecated 東映ローカライズなので、いずれ廃止予定
  */
 export class DistributionsService extends Service {
-    public async getDistributionsList(): Promise<factory.distributions.distribute.IDistributions[]> {
+    public async getDistributionsList(): Promise<factory.distributor.IDistributor[]> {
         return this.fetch({
             uri: '/distributions/list',
             method: 'GET',
@@ -21,7 +21,7 @@ export class DistributionsService extends Service {
     public async createDistribution(params: {
         id: string;
         name: string;
-    }): Promise<factory.distributions.distribute.IDistributions> {
+    }): Promise<factory.distributor.IDistributor> {
         return this.fetch({
             uri: '/distributions/add',
             method: 'POST',
@@ -29,9 +29,9 @@ export class DistributionsService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
-    public async searchDistribution(params: factory.distributions.distribute.ISearchConditions): Promise<{
+    public async searchDistribution(params: factory.distributor.ISearchConditions): Promise<{
         totalCount: number;
-        data: factory.distributions.distribute.IDistributions[];
+        data: factory.distributor.IDistributor[];
     }> {
         return this.fetch({
             uri: '/distributions/search',

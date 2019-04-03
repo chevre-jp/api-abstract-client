@@ -4,6 +4,37 @@ import * as factory from '../factory';
 import { Service } from '../service';
 
 /**
+ * 上映イベント+チケット集計インターフェース
+ */
+export type IEventWithTicketTypeCount = factory.event.IEvent<factory.eventType.ScreeningEvent> & {
+    saleTicketCount: number;
+    preSaleTicketCount: number;
+    freeTicketCount: number;
+};
+
+export interface ICountTicketTypePerEventResult {
+    totalCount: number;
+    data: IEventWithTicketTypeCount[];
+}
+
+export interface ICountTicketTypePerEventConditions {
+    /**
+     * 上映イベントシーリズID
+     */
+    id?: string;
+    /**
+     * 開始日 FROM
+     */
+    startFrom?: Date;
+    /**
+     * 開始日 TO
+     */
+    startThrough?: Date;
+    limit: number;
+    page: number;
+}
+
+/**
  * イベントサービス
  */
 export class EventService extends Service {
@@ -116,8 +147,8 @@ export class EventService extends Service {
      * @deprecated 東映ローカライズなので、いずれ廃止予定
      */
     public async countTicketTypePerEvent(
-        params: factory.agregation.ICountTicketTypePerEventConditions
-    ): Promise<factory.agregation.ICountTicketTypePerEventResult> {
+        params: ICountTicketTypePerEventConditions
+    ): Promise<ICountTicketTypePerEventResult> {
         return this.fetch({
             uri: `/events/screeningEvent/countTicketTypePerEvent`,
             method: 'GET',

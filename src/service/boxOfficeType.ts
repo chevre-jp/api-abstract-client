@@ -30,7 +30,7 @@ export class BoxOfficeTypeService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
-    public async searchBoxOfficeType(params: factory.boxOfficeType.ISearchConditions): Promise<{
+    public async searchBoxOfficeType(params: factory.serviceType.ISearchConditions): Promise<{
         totalCount: number;
         data: factory.serviceType.IServiceType[];
     }> {
