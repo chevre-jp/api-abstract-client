@@ -39,7 +39,7 @@ export class CreativeWorkService extends Service {
         identifier: string;
     }): Promise<factory.creativeWork.movie.ICreativeWork> {
         return this.fetch({
-            uri: `/creativeWorks/movie/${params.identifier}`,
+            uri: `/creativeWorks/movie/${encodeURIComponent(String(params.identifier))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -47,7 +47,7 @@ export class CreativeWorkService extends Service {
 
     public async updateMovie(params: factory.creativeWork.movie.ICreativeWork): Promise<void> {
         await this.fetch({
-            uri: `/creativeWorks/movie/${params.identifier}`,
+            uri: `/creativeWorks/movie/${encodeURIComponent(String(params.identifier))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -58,7 +58,7 @@ export class CreativeWorkService extends Service {
         identifier: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/creativeWorks/movie/${params.identifier}`,
+            uri: `/creativeWorks/movie/${encodeURIComponent(String(params.identifier))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
