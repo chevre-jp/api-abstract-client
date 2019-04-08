@@ -9,11 +9,11 @@ import { AuthClient } from './auth/authClient';
 import { AccountTitleService } from './service/accountTitle';
 import { CreativeWorkService } from './service/creativeWork';
 import { EventService } from './service/event';
+import { OfferService } from './service/offer';
 import { PlaceService } from './service/place';
 import { PriceSpecificationService } from './service/priceSpecification';
 import { ReservationService } from './service/reservation';
 import { ServiceTypeService } from './service/serviceType';
-import { TicketTypeService } from './service/ticketType';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
@@ -58,10 +58,12 @@ export namespace service {
      * 興行区分サービス
      */
     export class ServiceType extends ServiceTypeService { }
+
     /**
-     * 券種サービス
+     * オファーサービス
      */
-    export class TicketType extends TicketTypeService { }
+    export class Offer extends OfferService { }
+
     export namespace transaction {
         /**
          * 予約キャンセル取引サービス

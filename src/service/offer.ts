@@ -4,9 +4,9 @@ import * as factory from '../factory';
 import { Service } from '../service';
 
 /**
- * 券種サービス
+ * オファーサービス
  */
-export class TicketTypeService extends Service {
+export class OfferService extends Service {
     /**
      * 券種グループ作成
      */
@@ -150,6 +150,67 @@ export class TicketTypeService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: `/ticketTypes/${encodeURIComponent(String(params.id))}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
+     * プロダクトオファー作成
+     */
+    public async createProductOffer(
+        params: factory.offer.product.IOffer
+    ): Promise<factory.offer.product.IOffer> {
+        return this.fetch({
+            uri: '/productOffers',
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [CREATED]
+        }).then(async (response) => response.json());
+    }
+
+    /**
+     * プロダクトオファー検索
+     */
+    public async searchProductOffers(
+        params: factory.offer.product.ISearchConditions
+    ): Promise<{
+        totalCount: number;
+        data: factory.offer.product.IOffer[];
+    }> {
+        return this.fetch({
+            uri: '/productOffers',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
+        });
+    }
+
+    /**
+     * プロダクトオファー更新
+     */
+    public async updateProductOffer(params: factory.offer.product.IOffer): Promise<void> {
+        await this.fetch({
+            uri: `/productOffers/${encodeURIComponent(String(params.id))}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
+     * プロダクトオファー削除
+     */
+    public async deleteProductOffer(params: {
+        id: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/productOffers/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
