@@ -50,7 +50,7 @@ export class DistributionsService extends Service {
         name: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/distributions/${params.id}`,
+            uri: `/distributions/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: { name: params.name },
             expectedStatusCodes: [NO_CONTENT]
@@ -60,7 +60,7 @@ export class DistributionsService extends Service {
         id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/distributions/${params.id}`,
+            uri: `/distributions/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });

@@ -46,7 +46,7 @@ export class AccountTitleService extends Service {
      */
     public async updateAccounTitleCategory(params: factory.accountTitle.IAccountTitle): Promise<void> {
         await this.fetch({
-            uri: `/accountTitles/accountTitleCategory/${params.codeValue}`,
+            uri: `/accountTitles/accountTitleCategory/${encodeURIComponent(String(params.codeValue))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -61,7 +61,7 @@ export class AccountTitleService extends Service {
         codeValue: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/accountTitles/accountTitleCategory/${params.codeValue}`,
+            uri: `/accountTitles/accountTitleCategory/${encodeURIComponent(String(params.codeValue))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
@@ -110,7 +110,7 @@ export class AccountTitleService extends Service {
      */
     public async updateAccounTitleSet(params: factory.accountTitle.IAccountTitle): Promise<void> {
         await this.fetch({
-            uri: `/accountTitles/accountTitleSet/${params.codeValue}`,
+            uri: `/accountTitles/accountTitleSet/${encodeURIComponent(String(params.codeValue))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -138,7 +138,7 @@ export class AccountTitleService extends Service {
         params: factory.accountTitle.IAccountTitle
     ): Promise<void> {
         await this.fetch({
-            uri: `/accountTitles/${params.codeValue}`,
+            uri: `/accountTitles/${encodeURIComponent(String(params.codeValue))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]

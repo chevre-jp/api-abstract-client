@@ -38,7 +38,7 @@ export class ReservationService extends Service {
         id: string;
     }): Promise<factory.reservation.IReservation<T>> {
         return this.fetch({
-            uri: `/reservations/${params.id}`,
+            uri: `/reservations/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
@@ -68,7 +68,7 @@ export class ReservationService extends Service {
         id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/reservations/eventReservation/screeningEvent/${params.id}/checkedIn`,
+            uri: `/reservations/eventReservation/screeningEvent/${encodeURIComponent(String(params.id))}/checkedIn`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });
@@ -81,7 +81,7 @@ export class ReservationService extends Service {
         id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/reservations/eventReservation/screeningEvent/${params.id}/attended`,
+            uri: `/reservations/eventReservation/screeningEvent/${encodeURIComponent(String(params.id))}/attended`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });

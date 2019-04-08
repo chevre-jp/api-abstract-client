@@ -39,7 +39,7 @@ export class ServiceTypeService extends Service {
         id: string;
     }): Promise<factory.serviceType.IServiceType> {
         return this.fetch({
-            uri: `/serviceTypes/${params.id}`,
+            uri: `/serviceTypes/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -47,7 +47,7 @@ export class ServiceTypeService extends Service {
 
     public async update(params: factory.serviceType.IServiceType): Promise<void> {
         await this.fetch({
-            uri: `/serviceTypes/${params.id}`,
+            uri: `/serviceTypes/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]

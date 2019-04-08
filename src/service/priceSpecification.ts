@@ -68,7 +68,7 @@ export class PriceSpecificationService extends Service {
         id: string;
     }): Promise<IPriceSpecification<T>> {
         return this.fetch({
-            uri: `/priceSpecifications/${params.id}`,
+            uri: `/priceSpecifications/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -78,7 +78,7 @@ export class PriceSpecificationService extends Service {
         params: IPriceSpecification<T>
     ): Promise<void> {
         await this.fetch({
-            uri: `/priceSpecifications/${params.id}`,
+            uri: `/priceSpecifications/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]

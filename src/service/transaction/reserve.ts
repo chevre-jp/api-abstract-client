@@ -24,7 +24,7 @@ export class ReserveTransactionService extends Service {
      */
     public async confirm(params: factory.transaction.reserve.IConfirmParams): Promise<void> {
         await this.fetch({
-            uri: `/transactions/reserve/${params.id}/confirm`,
+            uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -36,7 +36,7 @@ export class ReserveTransactionService extends Service {
      */
     public async cancel(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/reserve/${params.id}/cancel`,
+            uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}

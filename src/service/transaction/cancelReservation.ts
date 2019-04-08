@@ -26,7 +26,7 @@ export class CancelReservationTransactionService extends Service {
      */
     public async confirm(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/cancelReservation/${params.id}/confirm`,
+            uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}
@@ -38,7 +38,7 @@ export class CancelReservationTransactionService extends Service {
      */
     public async cancel(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/cancelReservation/${params.id}/cancel`,
+            uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}

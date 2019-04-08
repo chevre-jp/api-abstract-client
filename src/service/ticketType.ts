@@ -50,7 +50,7 @@ export class TicketTypeService extends Service {
         id: string;
     }): Promise<factory.ticketType.ITicketTypeGroup> {
         return this.fetch({
-            uri: `/ticketTypeGroups/${params.id}`,
+            uri: `/ticketTypeGroups/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -61,7 +61,7 @@ export class TicketTypeService extends Service {
      */
     public async updateTicketTypeGroup(params: factory.ticketType.ITicketTypeGroup): Promise<void> {
         await this.fetch({
-            uri: `/ticketTypeGroups/${params.id}`,
+            uri: `/ticketTypeGroups/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -75,7 +75,7 @@ export class TicketTypeService extends Service {
         id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/ticketTypeGroups/${params.id}`,
+            uri: `/ticketTypeGroups/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
@@ -124,7 +124,7 @@ export class TicketTypeService extends Service {
         id: string;
     }): Promise<factory.ticketType.ITicketType> {
         return this.fetch({
-            uri: `/ticketTypes/${params.id}`,
+            uri: `/ticketTypes/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -135,7 +135,7 @@ export class TicketTypeService extends Service {
      */
     public async updateTicketType(params: factory.ticketType.ITicketType): Promise<void> {
         await this.fetch({
-            uri: `/ticketTypes/${params.id}`,
+            uri: `/ticketTypes/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -149,7 +149,7 @@ export class TicketTypeService extends Service {
         id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/ticketTypes/${params.id}`,
+            uri: `/ticketTypes/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });

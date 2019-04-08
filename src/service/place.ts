@@ -52,7 +52,7 @@ export class PlaceService extends Service {
         branchCode: string;
     }): Promise<IMovieTheater> {
         return this.fetch({
-            uri: `/places/${factory.placeType.MovieTheater}/${params.branchCode}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.branchCode))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -63,7 +63,7 @@ export class PlaceService extends Service {
      */
     public async updateMovieTheater(params: IMovieTheater): Promise<void> {
         await this.fetch({
-            uri: `/places/${factory.placeType.MovieTheater}/${params.branchCode}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.branchCode))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -77,7 +77,7 @@ export class PlaceService extends Service {
         branchCode: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/places/${factory.placeType.MovieTheater}/${params.branchCode}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.branchCode))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });

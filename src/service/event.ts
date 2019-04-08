@@ -81,7 +81,7 @@ export class EventService extends Service {
         id: string;
     }): Promise<factory.event.IEvent<T>> {
         return this.fetch({
-            uri: `/events/${params.id}`,
+            uri: `/events/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -95,7 +95,7 @@ export class EventService extends Service {
         attributes: factory.event.IAttributes<T>;
     }): Promise<void> {
         await this.fetch({
-            uri: `/events/${params.id}`,
+            uri: `/events/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params.attributes,
             expectedStatusCodes: [NO_CONTENT]
@@ -109,7 +109,7 @@ export class EventService extends Service {
         id: string;
     }): Promise<factory.event.screeningEvent.IScreeningRoomSectionOffer[]> {
         return this.fetch({
-            uri: `/events/${params.id}/offers`,
+            uri: `/events/${encodeURIComponent(String(params.id))}/offers`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -122,7 +122,7 @@ export class EventService extends Service {
         id: string;
     }): Promise<factory.event.screeningEvent.ITicketOffer[]> {
         return this.fetch({
-            uri: `/events/${params.id}/offers/ticket`,
+            uri: `/events/${encodeURIComponent(String(params.id))}/offers/ticket`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());

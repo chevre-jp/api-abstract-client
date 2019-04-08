@@ -51,7 +51,7 @@ export class SubjectService extends Service {
         id: string;
     }): Promise<factory.subject.ISubject> {
         return this.fetch({
-            uri: `/subjects/${params.id}`,
+            uri: `/subjects/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -63,7 +63,7 @@ export class SubjectService extends Service {
         }
     ): Promise<void> {
         await this.fetch({
-            uri: `/subjects/${params.id}`,
+            uri: `/subjects/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
