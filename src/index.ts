@@ -14,6 +14,7 @@ import { PlaceService } from './service/place';
 import { PriceSpecificationService } from './service/priceSpecification';
 import { ReservationService } from './service/reservation';
 import { ServiceTypeService } from './service/serviceType';
+import { TaskService } from './service/task';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
@@ -63,6 +64,11 @@ export namespace service {
      * オファーサービス
      */
     export class Offer extends OfferService { }
+
+    /**
+     * タスクサービス
+     */
+    export class Task extends TaskService { }
 
     export namespace transaction {
         /**
