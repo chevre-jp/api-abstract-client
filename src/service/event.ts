@@ -4,35 +4,13 @@ import * as factory from '../factory';
 import { Service } from '../service';
 
 /**
- * 上映イベント+チケット集計インターフェース
+ * イベント+予約集計インターフェース
  */
-export type IEventWithTicketTypeCount = factory.event.IEvent<factory.eventType.ScreeningEvent> & {
+export type IEventWithAggregateReservation<T extends factory.eventType> = factory.event.IEvent<T> & {
     saleTicketCount: number;
     preSaleTicketCount: number;
     freeTicketCount: number;
 };
-
-export interface ICountTicketTypePerEventResult {
-    totalCount: number;
-    data: IEventWithTicketTypeCount[];
-}
-
-export interface ICountTicketTypePerEventConditions {
-    /**
-     * 上映イベントシーリズID
-     */
-    id?: string;
-    /**
-     * 開始日 FROM
-     */
-    startFrom?: Date;
-    /**
-     * 開始日 TO
-     */
-    startThrough?: Date;
-    limit: number;
-    page: number;
-}
 
 /**
  * イベントサービス
@@ -143,17 +121,24 @@ export class EventService extends Service {
     }
 
     /**
-     * 券種の種別で集計API
-     * @deprecated 東映ローカライズなので、いずれ廃止予定
+     * 予約集計つきのデータ検索
      */
-    public async countTicketTypePerEvent(
-        params: ICountTicketTypePerEventConditions
-    ): Promise<ICountTicketTypePerEventResult> {
+    public async searchWithAggregateReservation<T extends factory.eventType>(
+        params: factory.event.ISearchConditions<T>
+    ): Promise<{
+        totalCount: number;
+        data: IEventWithAggregateReservation<T>[];
+    }> {
         return this.fetch({
-            uri: `/events/screeningEvent/countTicketTypePerEvent`,
+            uri: '/events/withAggregateReservation',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
+        });
     }
 }
