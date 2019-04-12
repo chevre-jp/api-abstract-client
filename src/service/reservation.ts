@@ -61,20 +61,6 @@ export class ReservationService extends Service {
     }
 
     /**
-     * 発券する
-     * @deprecated Use checkInScreeningEventReservation
-     */
-    public async checkInScreeningEvent(params: {
-        id: string;
-    }): Promise<void> {
-        await this.fetch({
-            uri: `/reservations/eventReservation/screeningEvent/${encodeURIComponent(String(params.id))}/checkedIn`,
-            method: 'PUT',
-            expectedStatusCodes: [NO_CONTENT]
-        });
-    }
-
-    /**
      * 入場する
      */
     public async attendScreeningEvent(params: {

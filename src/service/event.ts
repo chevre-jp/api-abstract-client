@@ -107,20 +107,6 @@ export class EventService extends Service {
     }
 
     /**
-     * 複数の上映イベント作成
-     */
-    public async createMultipleScreeningEvent(
-        params: factory.event.screeningEvent.IAttributes[]
-    ): Promise<factory.event.screeningEvent.IEvent> {
-        return this.fetch({
-            uri: '/events/screeningEvent/saveMultiple',
-            method: 'POST',
-            body: { attributes: params },
-            expectedStatusCodes: [CREATED]
-        }).then(async (response) => response.json());
-    }
-
-    /**
      * 予約集計つきのデータ検索
      */
     public async searchWithAggregateReservation<T extends factory.eventType>(
