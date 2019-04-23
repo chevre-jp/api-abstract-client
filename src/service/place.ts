@@ -46,13 +46,13 @@ export class PlaceService extends Service {
     }
 
     /**
-     * 劇場コードで劇場取得
+     * 劇場取得
      */
-    public async findMovieTheaterByBranchCode(params: {
-        branchCode: string;
+    public async findMovieTheaterById(params: {
+        id: string;
     }): Promise<IMovieTheater> {
         return this.fetch({
-            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.branchCode))}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -63,7 +63,7 @@ export class PlaceService extends Service {
      */
     public async updateMovieTheater(params: IMovieTheater): Promise<void> {
         await this.fetch({
-            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.branchCode))}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -74,10 +74,10 @@ export class PlaceService extends Service {
      * 劇場削除
      */
     public async deleteMovieTheater(params: {
-        branchCode: string;
+        id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.branchCode))}`,
+            uri: `/places/${factory.placeType.MovieTheater}/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
