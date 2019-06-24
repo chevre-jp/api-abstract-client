@@ -1,12 +1,31 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
-import { Service } from '../service';
+import { ISearchResult, Service } from '../service';
 
 /**
  * オファーサービス
  */
 export class OfferService extends Service {
+    /**
+     * オファーカテゴリ検索
+     */
+    public async searchCategories(
+        params: { project?: { ids?: string[] } }
+    ): Promise<ISearchResult<factory.ticketType.ITicketTypeCategory[]>> {
+        return this.fetch({
+            uri: '/offerCategories',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
+        });
+    }
+
     /**
      * 券種グループ作成
      */
@@ -26,10 +45,7 @@ export class OfferService extends Service {
      */
     public async searchTicketTypeGroups(
         params: factory.ticketType.ITicketTypeGroupSearchConditions
-    ): Promise<{
-        totalCount: number;
-        data: factory.ticketType.ITicketTypeGroup[];
-    }> {
+    ): Promise<ISearchResult<factory.ticketType.ITicketTypeGroup[]>> {
         return this.fetch({
             uri: '/ticketTypeGroups',
             method: 'GET',
@@ -100,10 +116,7 @@ export class OfferService extends Service {
      */
     public async searchTicketTypes(
         params: factory.ticketType.ITicketTypeSearchConditions
-    ): Promise<{
-        totalCount: number;
-        data: factory.ticketType.ITicketType[];
-    }> {
+    ): Promise<ISearchResult<factory.ticketType.ITicketType[]>> {
         return this.fetch({
             uri: '/ticketTypes',
             method: 'GET',
@@ -174,10 +187,7 @@ export class OfferService extends Service {
      */
     public async searchProductOffers(
         params: factory.offer.product.ISearchConditions
-    ): Promise<{
-        totalCount: number;
-        data: factory.offer.product.IOffer[];
-    }> {
+    ): Promise<ISearchResult<factory.offer.product.IOffer[]>> {
         return this.fetch({
             uri: '/productOffers',
             method: 'GET',
