@@ -71,10 +71,12 @@ export class EventService extends Service {
     public async update<T extends factory.eventType>(params: {
         id: string;
         attributes: factory.event.IAttributes<T>;
+        upsert?: boolean;
     }): Promise<void> {
         await this.fetch({
             uri: `/events/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
+            qs: { upsert: params.upsert },
             body: params.attributes,
             expectedStatusCodes: [NO_CONTENT]
         });
