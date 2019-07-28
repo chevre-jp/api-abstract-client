@@ -8,14 +8,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- イベントサービスを追加。
-- 予約取引サービスを追加。
-- 予約キャンセル取引サービスを追加。
-- 場所サービスを追加。
-- 予約サービスを追加。
-- 作品サービスを追加。
-- 券種サービスを追加。
-
 ### Changed
 
 ### Deprecated
@@ -25,3 +17,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+
+## v1.0.0 - 2019-07-28
+
+### Added
+
+- Release
+
+Initial release
