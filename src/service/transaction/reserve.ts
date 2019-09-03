@@ -39,7 +39,7 @@ export class ReserveTransactionService extends Service {
             uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
-            body: {}
+            body: params
         });
     }
 }
