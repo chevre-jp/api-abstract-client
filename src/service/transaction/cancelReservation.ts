@@ -24,12 +24,12 @@ export class CancelReservationTransactionService extends Service {
     /**
      * 取引確定
      */
-    public async confirm(params: { id: string }): Promise<void> {
+    public async confirm(params: factory.transaction.cancelReservation.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
-            body: {}
+            body: params
         });
     }
 
@@ -41,7 +41,7 @@ export class CancelReservationTransactionService extends Service {
             uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
-            body: {}
+            body: params
         });
     }
 }
