@@ -20,6 +20,21 @@ export class ReserveTransactionService extends Service {
     }
 
     /**
+     * 予約を追加する
+     */
+    public async addReservations(params: {
+        id: string;
+        object: factory.transaction.reserve.IObjectWithoutDetail;
+    }): Promise<factory.transaction.reserve.ITransaction> {
+        return this.fetch({
+            uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/reservations`,
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
+
+    /**
      * 取引確定
      */
     public async confirm(params: factory.transaction.reserve.IConfirmParams): Promise<void> {
