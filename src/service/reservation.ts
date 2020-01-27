@@ -32,6 +32,21 @@ export class ReservationService extends Service {
     }
 
     /**
+     * ストリーミングダウンロード
+     */
+    public async download<T extends factory.reservationType>(params: factory.reservation.ISearchConditions<T> & {
+        format: any;
+    }): Promise<NodeJS.ReadableStream | ReadableStream> {
+        return this.fetch({
+            uri: `/reservations/download`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        })
+            .then(async (response) => <NodeJS.ReadableStream | ReadableStream>response.body);
+    }
+
+    /**
      * IDで予約検索
      */
     public async findById<T extends factory.reservationType>(params: {
