@@ -25,7 +25,7 @@ export class CategoryCodeService extends Service {
      * 検索
      */
     public async search(
-        params: any
+        params: factory.categoryCode.ISearchConditions
     ): Promise<{
         data: factory.categoryCode.ICategoryCode[];
     }> {
@@ -55,7 +55,7 @@ export class CategoryCodeService extends Service {
         params: factory.categoryCode.ICategoryCode
     ): Promise<void> {
         await this.fetch({
-            uri: `/categoryCodes/${encodeURIComponent(String((<any>params).id))}`,
+            uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
