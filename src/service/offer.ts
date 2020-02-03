@@ -169,13 +169,13 @@ export class OfferService extends Service {
     }
 
     /**
-     * プロダクトオファー作成
+     * オファー作成
      */
-    public async createProductOffer(
-        params: factory.offer.product.IOffer
-    ): Promise<factory.offer.product.IOffer> {
+    public async create(
+        params: factory.offer.IOffer
+    ): Promise<factory.offer.IOffer> {
         return this.fetch({
-            uri: '/productOffers',
+            uri: '/offers',
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
@@ -183,13 +183,13 @@ export class OfferService extends Service {
     }
 
     /**
-     * プロダクトオファー検索
+     * オファー検索
      */
-    public async searchProductOffers(
-        params: factory.offer.product.ISearchConditions
-    ): Promise<ISearchResult<factory.offer.product.IOffer[]>> {
+    public async search(
+        params: factory.offer.ISearchConditions
+    ): Promise<ISearchResult<factory.offer.IOffer[]>> {
         return this.fetch({
-            uri: '/productOffers',
+            uri: '/offers',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
@@ -202,11 +202,11 @@ export class OfferService extends Service {
     }
 
     /**
-     * プロダクトオファー更新
+     * オファー更新
      */
-    public async updateProductOffer(params: factory.offer.product.IOffer): Promise<void> {
+    public async updateOffer(params: factory.offer.IOffer): Promise<void> {
         await this.fetch({
-            uri: `/productOffers/${encodeURIComponent(String(params.id))}`,
+            uri: `/offers/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -214,13 +214,13 @@ export class OfferService extends Service {
     }
 
     /**
-     * プロダクトオファー削除
+     * オファー削除
      */
-    public async deleteProductOffer(params: {
+    public async deleteOffer(params: {
         id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/productOffers/${encodeURIComponent(String(params.id))}`,
+            uri: `/offers/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });

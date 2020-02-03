@@ -8,16 +8,6 @@ import { Service } from '../service';
  * @deprecated 東映ローカライズなので、いずれ廃止予定
  */
 export class DistributionsService extends Service {
-    public async getDistributionsList(): Promise<factory.distributor.IDistributor[]> {
-        return this.fetch({
-            uri: '/distributions/list',
-            method: 'GET',
-            // qs: params,
-            expectedStatusCodes: [OK]
-        }).then(async (response) => {
-            return response.json();
-        });
-    }
     public async createDistribution(params: {
         id: string;
         name: string;
@@ -29,6 +19,7 @@ export class DistributionsService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
     public async searchDistribution(params: factory.distributor.ISearchConditions): Promise<{
         totalCount: number;
         data: factory.distributor.IDistributor[];
@@ -45,6 +36,7 @@ export class DistributionsService extends Service {
             };
         });
     }
+
     public async updateDistribution(params: {
         id: string;
         name: string;
@@ -56,6 +48,7 @@ export class DistributionsService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
     public async deleteDistribution(params: {
         id: string;
     }): Promise<void> {
