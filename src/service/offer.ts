@@ -201,6 +201,14 @@ export class OfferService extends Service {
         });
     }
 
+    public async findById(params: { id: string }): Promise<factory.offer.IOffer> {
+        return this.fetch({
+            uri: `/offers/${encodeURIComponent(String(params.id))}`,
+            method: 'GET',
+            expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
+
     /**
      * オファー更新
      */

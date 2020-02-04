@@ -13,6 +13,7 @@ import { EventService } from './service/event';
 import { OfferService } from './service/offer';
 import { PlaceService } from './service/place';
 import { PriceSpecificationService } from './service/priceSpecification';
+import { ProductService } from './service/product';
 import { ProgramMembershipService } from './service/programMembership';
 import { ReservationService } from './service/reservation';
 import { ServiceTypeService } from './service/serviceType';
@@ -57,6 +58,10 @@ export namespace service {
      * 価格仕様サービス
      */
     export class PriceSpecification extends PriceSpecificationService { }
+    /**
+     * プロダクトサービス
+     */
+    export class Product extends ProductService { }
     /**
      * メンバーシッププログラムサービス
      */
