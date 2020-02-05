@@ -12,7 +12,7 @@ export class OfferService extends Service {
      */
     public async searchCategories(
         params: { project?: { ids?: string[] } }
-    ): Promise<ISearchResult<factory.ticketType.ITicketTypeCategory[]>> {
+    ): Promise<ISearchResult<any[]>> {
         return this.fetch({
             uri: '/offerCategories',
             method: 'GET',
