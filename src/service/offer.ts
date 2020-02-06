@@ -8,25 +8,6 @@ import { ISearchResult, Service } from '../service';
  */
 export class OfferService extends Service {
     /**
-     * オファーカテゴリ検索
-     */
-    public async searchCategories(
-        params: { project?: { ids?: string[] } }
-    ): Promise<ISearchResult<any[]>> {
-        return this.fetch({
-            uri: '/offerCategories',
-            method: 'GET',
-            qs: params,
-            expectedStatusCodes: [OK]
-        }).then(async (response) => {
-            return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
-                data: await response.json()
-            };
-        });
-    }
-
-    /**
      * 券種グループ作成
      */
     public async createTicketTypeGroup(
