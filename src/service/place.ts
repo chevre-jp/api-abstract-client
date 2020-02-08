@@ -82,4 +82,25 @@ export class PlaceService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
+    /**
+     * 座席検索
+     */
+    public async searchSeats(
+        params: any
+    ): Promise<{
+        totalCount?: number;
+        data: factory.place.seat.IPlace[];
+    }> {
+        return this.fetch({
+            uri: `/places/${factory.placeType.Seat}`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                data: await response.json()
+            };
+        });
+    }
 }

@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - カテゴリーコードチャージ仕様インターフェースを追加
 - カテゴリーコードサービスを追加
 - プロダクトサービスを追加
+- 座席検索を追加
 
 ### Changed
 
