@@ -25,6 +25,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - サービスタイプをカテゴリーコードに統合
 - 配給区分をカテゴリーコードに統合
 - 座席に対するオファーインターフェースを拡張
+- オファー適用条件拡張
 
 ### Deprecated
 
