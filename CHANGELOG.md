@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 座席に対するオファーインターフェースを拡張
 - オファー適用条件拡張
 - イベントのacceptedOfferを拡張
+- オファーに適用サブ予約条件を追加
 
 ### Deprecated
 
