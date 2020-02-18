@@ -15,6 +15,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - カテゴリーコードサービスを追加
 - プロダクトサービスを追加
 - 座席検索を追加
+- スクリーン検索を追加
+- スクリーン更新を追加
 
 ### Changed
 

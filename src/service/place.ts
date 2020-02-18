@@ -84,6 +84,39 @@ export class PlaceService extends Service {
     }
 
     /**
+     * スクリーン検索
+     */
+    public async searchScreeningRooms(
+        params: any
+    ): Promise<{
+        totalCount?: number;
+        data: factory.place.screeningRoom.IPlace[];
+    }> {
+        return this.fetch({
+            uri: `/places/${factory.placeType.ScreeningRoom}`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                data: await response.json()
+            };
+        });
+    }
+
+    /**
+     * スクリーン更新
+     */
+    public async updateScreeningRoom(params: factory.place.screeningRoom.IPlace): Promise<void> {
+        await this.fetch({
+            uri: `/places/${factory.placeType.ScreeningRoom}/${encodeURIComponent(String(params.branchCode))}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 座席検索
      */
     public async searchSeats(
