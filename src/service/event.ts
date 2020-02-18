@@ -87,7 +87,7 @@ export class EventService extends Service {
      */
     public async searchOffers(params: {
         id: string;
-    }): Promise<factory.place.movieTheater.IScreeningRoomSectionOffer[]> {
+    }): Promise<factory.place.screeningRoomSection.IPlaceWithOffer[]> {
         return this.fetch({
             uri: `/events/${encodeURIComponent(String(params.id))}/offers`,
             method: 'GET',
