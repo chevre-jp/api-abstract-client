@@ -136,4 +136,16 @@ export class PlaceService extends Service {
             };
         });
     }
+
+    /**
+     * 座席更新
+     */
+    public async updateSeat(params: factory.place.seat.IPlace): Promise<void> {
+        await this.fetch({
+            uri: `/places/${factory.placeType.Seat}/${encodeURIComponent(String(params.branchCode))}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
 }
