@@ -11,6 +11,7 @@ import { CategoryCodeService } from './service/categoryCode';
 import { CreativeWorkService } from './service/creativeWork';
 import { EventService } from './service/event';
 import { OfferService } from './service/offer';
+import { OfferCatalogService } from './service/offerCatalog';
 import { PlaceService } from './service/place';
 import { PriceSpecificationService } from './service/priceSpecification';
 import { ProductService } from './service/product';
@@ -73,6 +74,11 @@ export namespace service {
      * オファーサービス
      */
     export class Offer extends OfferService { }
+
+    /**
+     * オファーカタログサービス
+     */
+    export class OfferCatalog extends OfferCatalogService { }
 
     /**
      * タスクサービス
