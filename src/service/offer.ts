@@ -11,8 +11,8 @@ export class OfferService extends Service {
      * 券種グループ作成
      */
     public async createTicketTypeGroup(
-        params: factory.ticketType.ITicketTypeGroup
-    ): Promise<factory.ticketType.ITicketTypeGroup> {
+        params: factory.offerCatalog.IOfferCatalog
+    ): Promise<factory.offerCatalog.IOfferCatalog> {
         return this.fetch({
             uri: '/ticketTypeGroups',
             method: 'POST',
@@ -25,8 +25,8 @@ export class OfferService extends Service {
      * 券種グループ検索
      */
     public async searchTicketTypeGroups(
-        params: factory.ticketType.ITicketTypeGroupSearchConditions
-    ): Promise<ISearchResult<factory.ticketType.ITicketTypeGroup[]>> {
+        params: factory.offerCatalog.ISearchConditions
+    ): Promise<ISearchResult<factory.offerCatalog.IOfferCatalog[]>> {
         return this.fetch({
             uri: '/ticketTypeGroups',
             method: 'GET',
@@ -45,7 +45,7 @@ export class OfferService extends Service {
      */
     public async findTicketTypeGroupById(params: {
         id: string;
-    }): Promise<factory.ticketType.ITicketTypeGroup> {
+    }): Promise<factory.offerCatalog.IOfferCatalog> {
         return this.fetch({
             uri: `/ticketTypeGroups/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -56,7 +56,7 @@ export class OfferService extends Service {
     /**
      * 券種グループ更新
      */
-    public async updateTicketTypeGroup(params: factory.ticketType.ITicketTypeGroup): Promise<void> {
+    public async updateTicketTypeGroup(params: factory.offerCatalog.IOfferCatalog): Promise<void> {
         await this.fetch({
             uri: `/ticketTypeGroups/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',

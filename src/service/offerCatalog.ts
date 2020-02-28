@@ -1,6 +1,6 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
-// import * as factory from '../factory';
+import * as factory from '../factory';
 
 import { ISearchResult, Service } from '../service';
 
@@ -12,8 +12,8 @@ export class OfferCatalogService extends Service {
      * オファーカタログ作成
      */
     public async create(
-        params: any
-    ): Promise<any> {
+        params: factory.offerCatalog.IOfferCatalog
+    ): Promise<factory.offerCatalog.IOfferCatalog> {
         return this.fetch({
             uri: '/offerCatalogs',
             method: 'POST',
@@ -26,8 +26,8 @@ export class OfferCatalogService extends Service {
      * オファーカタログ検索
      */
     public async search(
-        params: any
-    ): Promise<ISearchResult<any[]>> {
+        params: factory.offerCatalog.ISearchConditions
+    ): Promise<ISearchResult<factory.offerCatalog.IOfferCatalog[]>> {
         return this.fetch({
             uri: '/offerCatalogs',
             method: 'GET',
@@ -40,7 +40,7 @@ export class OfferCatalogService extends Service {
         });
     }
 
-    public async findById(params: { id: string }): Promise<any> {
+    public async findById(params: { id: string }): Promise<factory.offerCatalog.IOfferCatalog> {
         return this.fetch({
             uri: `/offerCatalogs/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -51,7 +51,7 @@ export class OfferCatalogService extends Service {
     /**
      * オファーカタログ更新
      */
-    public async update(params: any): Promise<void> {
+    public async update(params: factory.offerCatalog.IOfferCatalog): Promise<void> {
         await this.fetch({
             uri: `/offerCatalogs/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
