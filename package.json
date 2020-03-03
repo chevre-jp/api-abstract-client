@@ -74,7 +74,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@chevre/factory": "2.6.0-alpha.27",
+    "@chevre/factory": "2.6.0-alpha.28",
     "debug": "^3.2.6",
     "http-status": "^1.3.2",
     "isomorphic-fetch": "^2.2.1",
