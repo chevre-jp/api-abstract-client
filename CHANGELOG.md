@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - オファーに適用サブ予約条件を追加
 - オファーに有効期間を追加
 - 自由席許可属性を場所インターフェースに追加
+- 券種グループサービスをオファーカテゴリーサービスへ移行
 
 ### Deprecated
 
