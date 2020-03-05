@@ -8,17 +8,6 @@ import { Service } from '../service';
  * @deprecated 東映ローカライズなので、いずれ廃止予定
  */
 export class SubjectService extends Service {
-    /**
-     * 科目グループ作成
-     */
-    public async getSubjectList(
-    ): Promise<factory.subject.ISubject> {
-        return this.fetch({
-            uri: '/subjects/getSubjectList',
-            method: 'GET',
-            expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
-    }
     public async createSubject(
         params: {
             attributes: factory.subject.ISubjectAttributes;
@@ -31,8 +20,15 @@ export class SubjectService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+    public async searchAll(params: any): Promise<factory.subject.ISubject> {
+        return this.fetch({
+            uri: '/subjects/getSubjectList',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
     public async searchSubject(params: factory.subject.ISubjectSearchConditions): Promise<{
-        totalCount: number;
         data: factory.subject.ISubject[];
     }> {
         return this.fetch({
@@ -42,7 +38,6 @@ export class SubjectService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
