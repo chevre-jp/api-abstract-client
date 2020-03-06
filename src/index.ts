@@ -22,8 +22,6 @@ import { CancelReservationTransactionService } from './service/transaction/cance
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
 
-import { SubjectService } from './service/subject';
-
 export import factory = factory;
 export import transporters = transporters;
 
@@ -95,10 +93,4 @@ export namespace service {
          */
         export class Reserve extends ReserveTransactionService { }
     }
-
-    /**
-     * 科目サービス
-     * @deprecated 東映ローカライズなので、そのうち廃止
-     */
-    export class Subject extends SubjectService { }
 }

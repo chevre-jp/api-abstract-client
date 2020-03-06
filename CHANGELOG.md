@@ -36,11 +36,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - オファーに有効期間を追加
 - 自由席許可属性を場所インターフェースに追加
 - 券種グループサービスをオファーカテゴリーサービスへ移行
+- subjectサービスをaccountTitleサービスへ移行
 
 ### Deprecated
 
 - 配給サービスをカテゴリーコードサービスへ移行
-- subjectサービスをaccountTitleサービスへ移行
 
 ### Removed
 
