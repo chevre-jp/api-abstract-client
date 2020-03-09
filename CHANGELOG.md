@@ -38,6 +38,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 券種グループサービスをオファーカテゴリーサービスへ移行
 - subjectサービスをaccountTitleサービスへ移行
 - 券種検索条件をオファー検索条件に統合
+- 券種インターフェースを単価オファーインターフェースとして再定義
 
 ### Deprecated
 

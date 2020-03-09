@@ -11,8 +11,8 @@ export class OfferService extends Service {
      * 券種作成
      */
     public async createTicketType(
-        params: factory.ticketType.ITicketType
-    ): Promise<factory.ticketType.ITicketType> {
+        params: factory.offer.IUnitPriceOffer
+    ): Promise<factory.offer.IUnitPriceOffer> {
         return this.fetch({
             uri: '/ticketTypes',
             method: 'POST',
@@ -25,8 +25,8 @@ export class OfferService extends Service {
      * 券種検索
      */
     public async searchTicketTypes(
-        params: factory.ticketType.ITicketTypeSearchConditions
-    ): Promise<ISearchResult<factory.ticketType.ITicketType[]>> {
+        params: factory.offer.ISearchConditions
+    ): Promise<ISearchResult<factory.offer.IUnitPriceOffer[]>> {
         return this.fetch({
             uri: '/ticketTypes',
             method: 'GET',
@@ -34,7 +34,6 @@ export class OfferService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
@@ -45,7 +44,7 @@ export class OfferService extends Service {
      */
     public async findTicketTypeById(params: {
         id: string;
-    }): Promise<factory.ticketType.ITicketType> {
+    }): Promise<factory.offer.IUnitPriceOffer> {
         return this.fetch({
             uri: `/ticketTypes/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -56,7 +55,7 @@ export class OfferService extends Service {
     /**
      * 券種更新
      */
-    public async updateTicketType(params: factory.ticketType.ITicketType): Promise<void> {
+    public async updateTicketType(params: factory.offer.IUnitPriceOffer): Promise<void> {
         await this.fetch({
             uri: `/ticketTypes/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
@@ -82,8 +81,8 @@ export class OfferService extends Service {
      * オファー作成
      */
     public async create(
-        params: factory.offer.IOffer
-    ): Promise<factory.offer.IOffer> {
+        params: factory.offer.IUnitPriceOffer
+    ): Promise<factory.offer.IUnitPriceOffer> {
         return this.fetch({
             uri: '/offers',
             method: 'POST',
@@ -97,7 +96,7 @@ export class OfferService extends Service {
      */
     public async search(
         params: factory.offer.ISearchConditions
-    ): Promise<ISearchResult<factory.offer.IOffer[]>> {
+    ): Promise<ISearchResult<factory.offer.IUnitPriceOffer[]>> {
         return this.fetch({
             uri: '/offers',
             method: 'GET',
@@ -105,13 +104,12 @@ export class OfferService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
     }
 
-    public async findById(params: { id: string }): Promise<factory.offer.IOffer> {
+    public async findById(params: { id: string }): Promise<factory.offer.IUnitPriceOffer> {
         return this.fetch({
             uri: `/offers/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -122,7 +120,7 @@ export class OfferService extends Service {
     /**
      * オファー更新
      */
-    public async updateOffer(params: factory.offer.IOffer): Promise<void> {
+    public async updateOffer(params: factory.offer.IUnitPriceOffer): Promise<void> {
         await this.fetch({
             uri: `/offers/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
