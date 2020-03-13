@@ -61,6 +61,21 @@ export class ReservationService extends Service {
     }
 
     /**
+     * 予約部分更新
+     */
+    public async update(params: {
+        id: string;
+        update: any;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/reservations/${encodeURIComponent(String(params.id))}`,
+            method: 'PATCH',
+            body: params.update,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 予約IDあるいは予約番号指定でチェックイン(発券)する
      */
     public async checkInScreeningEventReservations(params: {
