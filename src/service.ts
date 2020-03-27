@@ -96,7 +96,7 @@ export interface ISearchResult<T> {
     /**
      * マッチ数
      */
-    totalCount: number;
+    totalCount?: number;
     /**
      * マッチデータ
      */

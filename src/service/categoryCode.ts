@@ -4,32 +4,38 @@ import * as factory from '../factory';
 import { Service } from '../service';
 
 /**
- * 興行区分サービス
+ * カテゴリーコードサービス
  */
-export class ServiceTypeService extends Service {
+export class CategoryCodeService extends Service {
+    /**
+     * 作成
+     */
     public async create(
-        params: factory.serviceType.IServiceType
-    ): Promise<factory.serviceType.IServiceType> {
+        params: factory.categoryCode.ICategoryCode
+    ): Promise<factory.categoryCode.ICategoryCode> {
         return this.fetch({
-            uri: '/serviceTypes',
+            uri: '/categoryCodes',
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
 
-    public async search(params: factory.serviceType.ISearchConditions): Promise<{
-        totalCount: number;
-        data: factory.serviceType.IServiceType[];
+    /**
+     * 検索
+     */
+    public async search(
+        params: factory.categoryCode.ISearchConditions
+    ): Promise<{
+        data: factory.categoryCode.ICategoryCode[];
     }> {
         return this.fetch({
-            uri: '/serviceTypes',
+            uri: '/categoryCodes',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
@@ -37,17 +43,19 @@ export class ServiceTypeService extends Service {
 
     public async findById(params: {
         id: string;
-    }): Promise<factory.serviceType.IServiceType> {
+    }): Promise<factory.categoryCode.ICategoryCode> {
         return this.fetch({
-            uri: `/serviceTypes/${encodeURIComponent(String(params.id))}`,
+            uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
 
-    public async update(params: factory.serviceType.IServiceType): Promise<void> {
+    public async update(
+        params: factory.categoryCode.ICategoryCode
+    ): Promise<void> {
         await this.fetch({
-            uri: `/serviceTypes/${encodeURIComponent(String(params.id))}`,
+            uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]

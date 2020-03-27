@@ -1,20 +1,21 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
+
 import { ISearchResult, Service } from '../service';
 
 /**
- * オファーサービス
+ * オファーカタログサービス
  */
-export class OfferService extends Service {
+export class OfferCatalogService extends Service {
     /**
-     * オファー作成
+     * オファーカタログ作成
      */
     public async create(
-        params: factory.offer.IUnitPriceOffer
-    ): Promise<factory.offer.IUnitPriceOffer> {
+        params: factory.offerCatalog.IOfferCatalog
+    ): Promise<factory.offerCatalog.IOfferCatalog> {
         return this.fetch({
-            uri: '/offers',
+            uri: '/offerCatalogs',
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
@@ -22,13 +23,13 @@ export class OfferService extends Service {
     }
 
     /**
-     * オファー検索
+     * オファーカタログ検索
      */
     public async search(
-        params: factory.offer.ISearchConditions
-    ): Promise<ISearchResult<factory.offer.IUnitPriceOffer[]>> {
+        params: factory.offerCatalog.ISearchConditions
+    ): Promise<ISearchResult<factory.offerCatalog.IOfferCatalog[]>> {
         return this.fetch({
-            uri: '/offers',
+            uri: '/offerCatalogs',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
@@ -39,20 +40,20 @@ export class OfferService extends Service {
         });
     }
 
-    public async findById(params: { id: string }): Promise<factory.offer.IUnitPriceOffer> {
+    public async findById(params: { id: string }): Promise<factory.offerCatalog.IOfferCatalog> {
         return this.fetch({
-            uri: `/offers/${encodeURIComponent(String(params.id))}`,
+            uri: `/offerCatalogs/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
 
     /**
-     * オファー更新
+     * オファーカタログ更新
      */
-    public async update(params: factory.offer.IUnitPriceOffer): Promise<void> {
+    public async update(params: factory.offerCatalog.IOfferCatalog): Promise<void> {
         await this.fetch({
-            uri: `/offers/${encodeURIComponent(String(params.id))}`,
+            uri: `/offerCatalogs/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -60,11 +61,13 @@ export class OfferService extends Service {
     }
 
     /**
-     * オファー削除
+     * オファーカタログ削除
      */
-    public async deleteById(params: { id: string }): Promise<void> {
+    public async deleteById(params: {
+        id: string;
+    }): Promise<void> {
         await this.fetch({
-            uri: `/offers/${encodeURIComponent(String(params.id))}`,
+            uri: `/offerCatalogs/${encodeURIComponent(String(params.id))}`,
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
