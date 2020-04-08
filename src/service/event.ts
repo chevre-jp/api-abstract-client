@@ -1,7 +1,8 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
-import { Service } from '../service';
+
+import { ISearchResult, Service } from '../service';
 
 /**
  * イベント+予約集計インターフェース
@@ -35,10 +36,7 @@ export class EventService extends Service {
      */
     public async search<T extends factory.eventType>(
         params: factory.event.ISearchConditions<T>
-    ): Promise<{
-        totalCount: number;
-        data: factory.event.IEvent<T>[];
-    }> {
+    ): Promise<ISearchResult<factory.event.IEvent<T>[]>> {
         return this.fetch({
             uri: '/events',
             method: 'GET',
@@ -84,6 +82,7 @@ export class EventService extends Service {
 
     /**
      * イベントに対するオファー検索
+     * @deprecated Use searchSeats
      */
     public async searchOffers(params: {
         id: string;
@@ -109,14 +108,31 @@ export class EventService extends Service {
     }
 
     /**
+     * イベントに対する座席検索
+     */
+    public async searchSeats(params: {
+        id: string;
+        limit?: number;
+        page?: number;
+    }): Promise<ISearchResult<factory.place.seat.IPlaceWithOffer[]>> {
+        return this.fetch({
+            uri: `/events/${encodeURIComponent(String(params.id))}/seats`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                data: await response.json()
+            };
+        });
+    }
+
+    /**
      * 予約集計つきのデータ検索
      */
     public async searchWithAggregateReservation<T extends factory.eventType>(
         params: factory.event.ISearchConditions<T>
-    ): Promise<{
-        totalCount: number;
-        data: IEventWithAggregateReservation<T>[];
-    }> {
+    ): Promise<ISearchResult<IEventWithAggregateReservation<T>[]>> {
         return this.fetch({
             uri: '/events/withAggregateReservation',
             method: 'GET',
