@@ -35,6 +35,22 @@ export class ReserveTransactionService extends Service {
     }
 
     /**
+     * 予約を追加する(レスポンスを受け取らない)
+     */
+    public async addReservationsWithNoResponse(params: {
+        id: string;
+        object: factory.transaction.reserve.IObjectWithoutDetail;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/reservations`,
+            method: 'POST',
+            body: params,
+            qs: { expectsNoContent: '1' },
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 取引確定
      */
     public async confirm(params: factory.transaction.reserve.IConfirmParams): Promise<void> {
