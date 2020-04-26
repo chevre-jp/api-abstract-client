@@ -1,6 +1,7 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
-// import * as factory from '../factory';
+import * as factory from '../factory';
+
 import { Service } from '../service';
 
 /**
@@ -70,5 +71,15 @@ export class ProductService extends Service {
             method: 'DELETE',
             expectedStatusCodes: [NO_CONTENT]
         });
+    }
+
+    public async searchOffers(params: {
+        id: string;
+    }): Promise<factory.event.screeningEvent.ITicketOffer[]> {
+        return this.fetch({
+            uri: `/products/${encodeURIComponent(String(params.id))}/offers`,
+            method: 'GET',
+            expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
     }
 }
