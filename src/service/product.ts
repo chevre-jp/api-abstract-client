@@ -11,9 +11,7 @@ export class ProductService extends Service {
     /**
      * 作成
      */
-    public async create(
-        params: any
-    ): Promise<any> {
+    public async create(params: factory.service.IService): Promise<factory.service.IService> {
         return this.fetch({
             uri: '/products',
             method: 'POST',
@@ -25,10 +23,11 @@ export class ProductService extends Service {
     /**
      * 検索
      */
-    public async search(
-        params: any
-    ): Promise<{
-        data: any[];
+    public async search(params: {
+        project?: { id?: { $eq?: string } };
+        typeOf?: { $eq?: string };
+    }): Promise<{
+        data: factory.service.IService[];
     }> {
         return this.fetch({
             uri: '/products',
@@ -44,7 +43,7 @@ export class ProductService extends Service {
 
     public async findById(params: {
         id: string;
-    }): Promise<any> {
+    }): Promise<factory.service.IService> {
         return this.fetch({
             uri: `/products/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -52,9 +51,7 @@ export class ProductService extends Service {
         }).then(async (response) => response.json());
     }
 
-    public async update(
-        params: any
-    ): Promise<void> {
+    public async update(params: factory.service.IService): Promise<void> {
         await this.fetch({
             uri: `/products/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
@@ -73,6 +70,9 @@ export class ProductService extends Service {
         });
     }
 
+    /**
+     * オファー検索
+     */
     public async searchOffers(params: {
         id: string;
     }): Promise<factory.event.screeningEvent.ITicketOffer[]> {
