@@ -20,6 +20,7 @@ import { ProjectService } from './service/project';
 import { ReservationService } from './service/reservation';
 import { TaskService } from './service/task';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
+import { RegisterServiceTransactionService } from './service/transaction/registerService';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import * as transporters from './transporters';
 
@@ -93,6 +94,10 @@ export namespace service {
          * 予約キャンセル取引サービス
          */
         export class CancelReservation extends CancelReservationTransactionService { }
+        /**
+         * サービス登録取引
+         */
+        export class RegisterService extends RegisterServiceTransactionService { }
         /**
          * 予約取引サービス
          */
