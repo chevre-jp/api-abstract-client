@@ -24,6 +24,8 @@ import { CancelReservationTransactionService } from './service/transaction/cance
 import { MoneyTransferTransactionService } from './service/transaction/moneyTransfer';
 import { RegisterServiceTransactionService } from './service/transaction/registerService';
 import { ReserveTransactionService } from './service/transaction/reserve';
+import { TransactionNumberService } from './service/transactionNumber';
+
 import * as transporters from './transporters';
 
 export import factory = factory;
@@ -114,4 +116,9 @@ export namespace service {
          */
         export class Reserve extends ReserveTransactionService { }
     }
+
+    /**
+     * 取引番号サービス
+     */
+    export class TransactionNumber extends TransactionNumberService { }
 }
