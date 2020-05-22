@@ -18,9 +18,14 @@ import { ProductService } from './service/product';
 import { ProgramMembershipService } from './service/programMembership';
 import { ProjectService } from './service/project';
 import { ReservationService } from './service/reservation';
+import { ServiceOutputService } from './service/serviceOutput';
 import { TaskService } from './service/task';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
+import { MoneyTransferTransactionService } from './service/transaction/moneyTransfer';
+import { RegisterServiceTransactionService } from './service/transaction/registerService';
 import { ReserveTransactionService } from './service/transaction/reserve';
+import { TransactionNumberService } from './service/transactionNumber';
+
 import * as transporters from './transporters';
 
 export import factory = factory;
@@ -84,6 +89,11 @@ export namespace service {
     export class OfferCatalog extends OfferCatalogService { }
 
     /**
+     * サービスアウトプットサービス
+     */
+    export class ServiceOutput extends ServiceOutputService { }
+
+    /**
      * タスクサービス
      */
     export class Task extends TaskService { }
@@ -94,8 +104,21 @@ export namespace service {
          */
         export class CancelReservation extends CancelReservationTransactionService { }
         /**
+         * 通貨転送取引サービス
+         */
+        export class MoneyTransfer extends MoneyTransferTransactionService { }
+        /**
+         * サービス登録取引
+         */
+        export class RegisterService extends RegisterServiceTransactionService { }
+        /**
          * 予約取引サービス
          */
         export class Reserve extends ReserveTransactionService { }
     }
+
+    /**
+     * 取引番号サービス
+     */
+    export class TransactionNumber extends TransactionNumberService { }
 }
