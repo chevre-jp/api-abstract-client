@@ -19,30 +19,9 @@ export class ReserveTransactionService extends Service {
         }).then(async (response) => response.json());
     }
 
-    /**
-     * 予約を追加する
-     */
-    public async addReservations(params: {
-        id: string;
-        object: factory.transaction.reserve.IObjectWithoutDetail;
-    }): Promise<factory.transaction.reserve.ITransaction> {
-        return this.fetch({
-            uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/reservations`,
-            method: 'POST',
-            body: params,
-            expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
-    }
-
-    /**
-     * 予約を追加する(レスポンスを受け取らない)
-     */
-    public async addReservationsWithNoResponse(params: {
-        id: string;
-        object: factory.transaction.reserve.IObjectWithoutDetail;
-    }): Promise<void> {
+    public async startWithNoResponse(params: factory.transaction.reserve.IStartParamsWithoutDetail): Promise<void> {
         await this.fetch({
-            uri: `/transactions/reserve/${encodeURIComponent(String(params.id))}/reservations`,
+            uri: '/transactions/reserve/start',
             method: 'POST',
             body: params,
             qs: { expectsNoContent: '1' },
