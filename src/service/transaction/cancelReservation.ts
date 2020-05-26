@@ -22,6 +22,20 @@ export class CancelReservationTransactionService extends Service {
     }
 
     /**
+     * 取引開始&確定
+     */
+    public async startAndConfirm(params: factory.transaction.cancelReservation.IStartParamsWithoutDetail & {
+        potentialActions?: factory.transaction.cancelReservation.IPotentialActionsParams;
+    }): Promise<void> {
+        await this.fetch({
+            uri: '/transactions/cancelReservation/confirm',
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 取引確定
      */
     public async confirm(params: factory.transaction.cancelReservation.IConfirmParams): Promise<void> {
