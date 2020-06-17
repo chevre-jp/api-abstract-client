@@ -51,7 +51,9 @@ export class Service {
     public async fetch(options: IFetchOptions) {
         const defaultOptions = {
             headers: {},
-            method: 'GET',
+            ...{
+                method: 'GET'
+            },
             ...options
         };
 
