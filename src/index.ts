@@ -18,6 +18,7 @@ import { ProductService } from './service/product';
 import { ProgramMembershipService } from './service/programMembership';
 import { ProjectService } from './service/project';
 import { ReservationService } from './service/reservation';
+import { SellerService } from './service/seller';
 import { ServiceOutputService } from './service/serviceOutput';
 import { ServiceOutputIdentifierService } from './service/serviceOutputIdentifier';
 import { TaskService } from './service/task';
@@ -88,6 +89,11 @@ export namespace service {
      * オファーカタログサービス
      */
     export class OfferCatalog extends OfferCatalogService { }
+
+    /**
+     * 販売者サービス
+     */
+    export class Seller extends SellerService { }
 
     /**
      * サービスアウトプットサービス
