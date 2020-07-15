@@ -3,8 +3,6 @@ import { CREATED, NO_CONTENT, OK } from 'http-status';
 import * as factory from '../factory';
 import { ISearchResult, Service } from '../service';
 
-export type ISeller = factory.seller.IOrganization<factory.seller.IAttributes<factory.organizationType>>;
-
 /**
  * 販売者サービス
  */
@@ -12,9 +10,9 @@ export class SellerService extends Service {
     /**
      * 販売者作成
      */
-    public async create<T extends factory.organizationType>(
-        params: factory.seller.IAttributes<T>
-    ): Promise<ISeller> {
+    public async create(
+        params: factory.seller.ISeller
+    ): Promise<factory.seller.ISeller> {
         return this.fetch({
             uri: '/sellers',
             method: 'POST',
@@ -29,7 +27,7 @@ export class SellerService extends Service {
      */
     public async findById(params: {
         id: string;
-    }): Promise<ISeller> {
+    }): Promise<factory.seller.ISeller> {
         return this.fetch({
             uri: `/sellers/${params.id}`,
             method: 'GET',
@@ -44,7 +42,7 @@ export class SellerService extends Service {
      */
     public async search(
         params: factory.seller.ISearchConditions
-    ): Promise<ISearchResult<ISeller[]>> {
+    ): Promise<ISearchResult<factory.seller.ISeller[]>> {
         return this.fetch({
             uri: '/sellers',
             method: 'GET',
@@ -66,7 +64,7 @@ export class SellerService extends Service {
      */
     public async update(params: {
         id: string;
-        attributes: factory.seller.IAttributes<factory.organizationType>;
+        attributes: factory.seller.ISeller;
     }): Promise<void> {
         await this.fetch({
             uri: `/sellers/${params.id}`,
