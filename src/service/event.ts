@@ -81,6 +81,21 @@ export class EventService extends Service {
     }
 
     /**
+     * イベント部分更新
+     */
+    public async updatePartially<T extends factory.eventType>(params: {
+        id: string;
+        attributes: factory.event.IAttributes<T>;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/events/${encodeURIComponent(String(params.id))}`,
+            method: 'PATCH',
+            body: params.attributes,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * イベントに対するオファー検索
      * @deprecated Use searchSeats
      */
