@@ -25,6 +25,7 @@ import { TaskService } from './service/task';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { MoneyTransferTransactionService } from './service/transaction/moneyTransfer';
 import { PayTransactionService } from './service/transaction/pay';
+import { RefundTransactionService } from './service/transaction/refund';
 import { RegisterServiceTransactionService } from './service/transaction/registerService';
 import { ReserveTransactionService } from './service/transaction/reserve';
 import { TransactionNumberService } from './service/transactionNumber';
@@ -124,6 +125,10 @@ export namespace service {
          * 決済取引サービス
          */
         export class Pay extends PayTransactionService { }
+        /**
+         * 返金取引サービス
+         */
+        export class Refund extends RefundTransactionService { }
         /**
          * サービス登録取引
          */
