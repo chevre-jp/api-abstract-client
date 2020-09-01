@@ -7,6 +7,7 @@ import * as factory from './factory';
 import { AuthClient } from './auth/authClient';
 
 import { AccountTitleService } from './service/accountTitle';
+import { ActionService } from './service/action';
 import { CategoryCodeService } from './service/categoryCode';
 import { CreativeWorkService } from './service/creativeWork';
 import { EventService } from './service/event';
@@ -45,6 +46,10 @@ export namespace service {
      * 勘定科目サービス
      */
     export class AccountTitle extends AccountTitleService { }
+    /**
+     * アクションサービス
+     */
+    export class Action extends ActionService { }
     /**
      * カテゴリーコード`サービス
      */
