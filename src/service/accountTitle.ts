@@ -25,7 +25,6 @@ export class AccountTitleService extends Service {
      * 科目分類検索
      */
     public async searchAccountTitleCategories(params: factory.accountTitle.ISearchConditions): Promise<{
-        totalCount: number;
         data: factory.accountTitle.IAccountTitle[];
     }> {
         return this.fetch({
@@ -35,7 +34,6 @@ export class AccountTitleService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
@@ -89,7 +87,6 @@ export class AccountTitleService extends Service {
      * 科目検索
      */
     public async searchAccountTitleSets(params: factory.accountTitle.ISearchConditions): Promise<{
-        totalCount: number;
         data: factory.accountTitle.IAccountTitle[];
     }> {
         return this.fetch({
@@ -99,7 +96,6 @@ export class AccountTitleService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
@@ -149,7 +145,6 @@ export class AccountTitleService extends Service {
      * 細目検索
      */
     public async search(params: factory.accountTitle.ISearchConditions): Promise<{
-        totalCount: number;
         data: factory.accountTitle.IAccountTitle[];
     }> {
         return this.fetch({
@@ -159,7 +154,6 @@ export class AccountTitleService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });

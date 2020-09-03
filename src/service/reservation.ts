@@ -15,7 +15,6 @@ export class ReservationService extends Service {
     public async search<T extends factory.reservationType>(
         params: factory.reservation.ISearchConditions<T>
     ): Promise<{
-        totalCount: number;
         data: factory.reservation.IReservation<T>[];
     }> {
         return this.fetch({
@@ -25,7 +24,6 @@ export class ReservationService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });

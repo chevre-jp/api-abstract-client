@@ -9,28 +9,6 @@ export import IPriceSpecification = factory.priceSpecification.IPriceSpecificati
  * 価格仕様サービス
  */
 export class PriceSpecificationService extends Service {
-    /**
-     * 複合価格仕様検索
-     */
-    // public async searchCompoundPriceSpecifications<T extends factory.priceSpecificationType>(
-    //     params: factory.compoundPriceSpecification.ISearchConditions<T>
-    // ): Promise<{
-    //     totalCount: number;
-    //     data: factory.compoundPriceSpecification.IPriceSpecification<T>[];
-    // }> {
-    //     return this.fetch({
-    //         uri: '/priceSpecifications/compoundPriceSpecification',
-    //         method: 'GET',
-    //         qs: params,
-    //         expectedStatusCodes: [OK]
-    //     }).then(async (response) => {
-    //         return {
-    //             totalCount: Number(<string>response.headers.get('X-Total-Count')),
-    //             data: await response.json()
-    //         };
-    //     });
-    // }
-
     public async create<T extends factory.priceSpecificationType>(
         params: IPriceSpecification<T>
     ): Promise<IPriceSpecification<T>> {
@@ -48,7 +26,6 @@ export class PriceSpecificationService extends Service {
     public async search<T extends factory.priceSpecificationType>(
         params: factory.priceSpecification.ISearchConditions<T>
     ): Promise<{
-        totalCount: number;
         data: IPriceSpecification<T>[];
     }> {
         return this.fetch({
@@ -58,7 +35,6 @@ export class PriceSpecificationService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
