@@ -19,7 +19,6 @@ export class CreativeWorkService extends Service {
     }
 
     public async searchMovies(params: factory.creativeWork.movie.ISearchConditions): Promise<{
-        totalCount: number;
         data: factory.creativeWork.movie.ICreativeWork[];
     }> {
         return this.fetch({
@@ -29,7 +28,6 @@ export class CreativeWorkService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });

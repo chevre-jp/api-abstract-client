@@ -51,7 +51,6 @@ export class TaskService extends Service {
         })
             .then(async (response) => {
                 return {
-                    totalCount: Number(<string>response.headers.get('X-Total-Count')),
                     data: await response.json()
                 };
             });

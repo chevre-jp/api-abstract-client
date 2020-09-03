@@ -13,7 +13,6 @@ export class ProgramMembershipService extends Service {
     public async search(
         params: any
     ): Promise<{
-        totalCount: number;
         data: any[];
     }> {
         return this.fetch({
@@ -23,7 +22,6 @@ export class ProgramMembershipService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
                 data: await response.json()
             };
         });
