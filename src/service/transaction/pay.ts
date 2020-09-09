@@ -1,4 +1,4 @@
-import { NO_CONTENT, OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../../factory';
 
@@ -8,6 +8,21 @@ import { Service } from '../../service';
  * 決済取引サービス
  */
 export class PayTransactionService extends Service {
+    /**
+     * 決済方法認証
+     */
+    public async check(
+        params: factory.action.check.paymentMethod.movieTicket.IObject
+    ): Promise<factory.action.check.paymentMethod.movieTicket.IAction> {
+        return this.fetch({
+            uri: `/transactions/${factory.transactionType.Pay}/check`,
+            method: 'POST',
+            expectedStatusCodes: [CREATED],
+            body: params
+        })
+            .then(async (response) => response.json());
+    }
+
     /**
      * 取引開始
      */
