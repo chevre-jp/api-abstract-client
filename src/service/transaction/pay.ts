@@ -12,7 +12,7 @@ export class PayTransactionService extends Service {
      * 決済方法認証
      */
     public async check(
-        params: factory.action.check.paymentMethod.movieTicket.IObject
+        params: factory.action.check.paymentMethod.movieTicket.IAttributes
     ): Promise<factory.action.check.paymentMethod.movieTicket.IAction> {
         return this.fetch({
             uri: `/transactions/${factory.transactionType.Pay}/check`,
