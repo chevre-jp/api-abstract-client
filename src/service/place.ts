@@ -10,7 +10,7 @@ export type IMovieTheater = factory.place.movieTheater.IPlace;
  */
 export class PlaceService extends Service {
     /**
-     * 劇場作成
+     * 施設作成
      */
     public async createMovieTheater(
         params: IMovieTheater
@@ -24,7 +24,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * 劇場検索
+     * 施設検索
      */
     public async searchMovieTheaters(
         params: factory.place.movieTheater.ISearchConditions
@@ -44,7 +44,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * 劇場取得
+     * 施設取得
      */
     public async findMovieTheaterById(params: {
         id: string;
@@ -57,7 +57,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * 劇場更新
+     * 施設更新
      */
     public async updateMovieTheater(params: IMovieTheater): Promise<void> {
         await this.fetch({
@@ -69,7 +69,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * 劇場削除
+     * 施設削除
      */
     public async deleteMovieTheater(params: {
         id: string;
@@ -82,7 +82,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーン作成
+     * ルーム作成
      */
     public async createScreeningRoom(params: factory.place.screeningRoom.IPlace): Promise<factory.place.screeningRoom.IPlace> {
         return this.fetch({
@@ -94,7 +94,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーン検索
+     * ルーム検索
      */
     public async searchScreeningRooms(
         params: any
@@ -114,7 +114,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーン更新
+     * ルーム更新
      */
     public async updateScreeningRoom(params: factory.place.screeningRoom.IPlace): Promise<void> {
         await this.fetch({
@@ -126,7 +126,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーン削除
+     * ルーム削除
      */
     public async deleteScreeningRoom(params: {
         project: { id: string };
@@ -142,7 +142,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーンセクション作成
+     * セクション作成
      */
     public async createScreeningRoomSection(
         params: factory.place.screeningRoomSection.IPlace
@@ -156,7 +156,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーンセクション検索
+     * セクション検索
      */
     public async searchScreeningRoomSections(
         params: any
@@ -176,7 +176,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーンセクション更新
+     * セクション更新
      */
     public async updateScreeningRoomSection(params: factory.place.screeningRoomSection.IPlace): Promise<void> {
         await this.fetch({
@@ -188,7 +188,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーンセクション削除
+     * セクション削除
      */
     public async deleteScreeningRoomSection(params: {
         project: { id: string };
@@ -209,7 +209,7 @@ export class PlaceService extends Service {
     }
 
     /**
-     * スクリーン作成
+     * 座席作成
      */
     public async createSeat(params: factory.place.seat.IPlace): Promise<factory.place.seat.IPlace> {
         return this.fetch({
