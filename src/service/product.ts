@@ -4,6 +4,8 @@ import * as factory from '../factory';
 
 import { Service } from '../service';
 
+export type IProduct = factory.product.IProduct | factory.service.paymentService.IService;
+
 /**
  * プロダクトサービス
  */
@@ -11,7 +13,7 @@ export class ProductService extends Service {
     /**
      * 作成
      */
-    public async create(params: factory.product.IProduct): Promise<factory.product.IProduct> {
+    public async create(params: IProduct): Promise<IProduct> {
         return this.fetch({
             uri: '/products',
             method: 'POST',
@@ -24,7 +26,7 @@ export class ProductService extends Service {
      * 検索
      */
     public async search(params: factory.product.ISearchConditions): Promise<{
-        data: factory.product.IProduct[];
+        data: IProduct[];
     }> {
         return this.fetch({
             uri: '/products',
@@ -38,7 +40,7 @@ export class ProductService extends Service {
         });
     }
 
-    public async findById(params: { id: string }): Promise<factory.product.IProduct> {
+    public async findById(params: { id: string }): Promise<IProduct> {
         return this.fetch({
             uri: `/products/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -46,9 +48,9 @@ export class ProductService extends Service {
         }).then(async (response) => response.json());
     }
 
-    public async update(params: factory.product.IProduct): Promise<void> {
+    public async update(params: IProduct): Promise<void> {
         await this.fetch({
-            uri: `/products/${encodeURIComponent(String(params.id))}`,
+            uri: `/products/${encodeURIComponent(String((<any>params).id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
