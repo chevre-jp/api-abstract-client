@@ -18,6 +18,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v3.45.0 - 2020-10-31
+
+### Changed
+
+- プロダクトインターフェースを決済サービスにも拡張
+- プロダクト検索条件拡張
+
 ## v3.44.0 - 2020-10-12
 
 ### Changed
