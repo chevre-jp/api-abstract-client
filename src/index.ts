@@ -21,7 +21,6 @@ import { ProjectService } from './service/project';
 import { ReservationService } from './service/reservation';
 import { SellerService } from './service/seller';
 import { ServiceOutputService } from './service/serviceOutput';
-import { ServiceOutputIdentifierService } from './service/serviceOutputIdentifier';
 import { TaskService } from './service/task';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { MoneyTransferTransactionService } from './service/transaction/moneyTransfer';
@@ -106,11 +105,6 @@ export namespace service {
      * サービスアウトプットサービス
      */
     export class ServiceOutput extends ServiceOutputService { }
-
-    /**
-     * サービスアウトプット識別子サービス
-     */
-    export class ServiceOutputIdentifier extends ServiceOutputIdentifierService { }
 
     /**
      * タスクサービス
