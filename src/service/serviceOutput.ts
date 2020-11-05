@@ -2,6 +2,9 @@ import { CREATED, OK } from 'http-status';
 
 import { Service } from '../service';
 
+export interface IPublishIdentifierParams {
+    project: { id: string };
+}
 export interface IPublishIdentifierResult {
     identifier: string;
 }
@@ -13,7 +16,7 @@ export class ServiceOutputService extends Service {
     /**
      * 識別子発行
      */
-    public async publishIdentifier(params: [{ project: { id: string } }]): Promise<IPublishIdentifierResult[]> {
+    public async publishIdentifier(params: IPublishIdentifierParams[]): Promise<IPublishIdentifierResult[]> {
         return this.fetch({
             uri: '/serviceOutputs/identifier',
             method: 'POST',
