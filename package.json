@@ -1,6 +1,6 @@
 {
   "name": "@chevre/api-abstract-client",
-  "version": "3.46.1",
+  "version": "3.46.2",
   "description": "Chevre API Abstract Client Library for Javascript",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
