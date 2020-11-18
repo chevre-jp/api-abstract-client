@@ -18,6 +18,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v3.47.1 - 2020-11-18
+
+### Fixed
+
+- tslint修正
+
 ## v3.47.0 - 2020-11-18
 
 ### Added
