@@ -10,8 +10,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Changed
 
-- update @chevre/factory
-
 ### Deprecated
 
 ### Removed
@@ -20,7 +18,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
-## v3.46.2 - 2020-11-17
+## v3.46.4 - 2020-11-18
+
+### Changed
+
+- update @chevre/factory
+
+## v3.46.3 - 2020-11-17
 
 ### Changed
 
