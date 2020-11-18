@@ -10,9 +10,7 @@ export class CategoryCodeService extends Service {
     /**
      * 作成
      */
-    public async create(
-        params: factory.categoryCode.ICategoryCode
-    ): Promise<factory.categoryCode.ICategoryCode> {
+    public async create(params: factory.categoryCode.ICategoryCode): Promise<factory.categoryCode.ICategoryCode> {
         return this.fetch({
             uri: '/categoryCodes',
             method: 'POST',
@@ -24,9 +22,7 @@ export class CategoryCodeService extends Service {
     /**
      * 検索
      */
-    public async search(
-        params: factory.categoryCode.ISearchConditions
-    ): Promise<{
+    public async search(params: factory.categoryCode.ISearchConditions): Promise<{
         data: factory.categoryCode.ICategoryCode[];
     }> {
         return this.fetch({
@@ -41,9 +37,7 @@ export class CategoryCodeService extends Service {
         });
     }
 
-    public async findById(params: {
-        id: string;
-    }): Promise<factory.categoryCode.ICategoryCode> {
+    public async findById(params: { id: string; }): Promise<factory.categoryCode.ICategoryCode> {
         return this.fetch({
             uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -51,9 +45,7 @@ export class CategoryCodeService extends Service {
         }).then(async (response) => response.json());
     }
 
-    public async update(
-        params: factory.categoryCode.ICategoryCode
-    ): Promise<void> {
+    public async update(params: factory.categoryCode.ICategoryCode): Promise<void> {
         await this.fetch({
             uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
@@ -61,4 +53,13 @@ export class CategoryCodeService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
+    public async deleteById(params: { id: string }): Promise<void> {
+        await this.fetch({
+            uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
 }
