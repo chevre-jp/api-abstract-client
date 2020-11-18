@@ -37,7 +37,7 @@ export class CategoryCodeService extends Service {
         });
     }
 
-    public async findById(params: { id: string; }): Promise<factory.categoryCode.ICategoryCode> {
+    public async findById(params: { id: string }): Promise<factory.categoryCode.ICategoryCode> {
         return this.fetch({
             uri: `/categoryCodes/${encodeURIComponent(String(params.id))}`,
             method: 'GET',
@@ -61,5 +61,4 @@ export class CategoryCodeService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
-
 }
