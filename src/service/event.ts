@@ -81,6 +81,19 @@ export class EventService extends Service {
     }
 
     /**
+     * イベント削除
+     */
+    public async deleteById(params: {
+        id: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/events/${encodeURIComponent(String(params.id))}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * イベント部分更新
      */
     public async updatePartially<T extends factory.eventType>(params: {
