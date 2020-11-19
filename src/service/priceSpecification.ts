@@ -60,4 +60,17 @@ export class PriceSpecificationService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
+    /**
+     * 価格仕様削除
+     */
+    public async deleteById(params: {
+        id: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/priceSpecifications/${encodeURIComponent(String(params.id))}`,
+            method: 'DELETE',
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
 }
