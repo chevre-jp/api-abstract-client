@@ -223,9 +223,7 @@ export class PlaceService extends Service {
     /**
      * 座席検索
      */
-    public async searchSeats(
-        params: any
-    ): Promise<{
+    public async searchSeats(params: factory.place.seat.ISearchConditions): Promise<{
         data: factory.place.seat.IPlace[];
     }> {
         return this.fetch({
