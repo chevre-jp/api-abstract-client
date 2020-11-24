@@ -96,9 +96,7 @@ export class PlaceService extends Service {
     /**
      * ルーム検索
      */
-    public async searchScreeningRooms(
-        params: any
-    ): Promise<{
+    public async searchScreeningRooms(params: factory.place.screeningRoom.ISearchConditions): Promise<{
         data: factory.place.screeningRoom.IPlace[];
     }> {
         return this.fetch({
@@ -158,9 +156,7 @@ export class PlaceService extends Service {
     /**
      * セクション検索
      */
-    public async searchScreeningRoomSections(
-        params: any
-    ): Promise<{
+    public async searchScreeningRoomSections(params: factory.place.screeningRoomSection.ISearchConditions): Promise<{
         data: factory.place.screeningRoomSection.IPlace[];
     }> {
         return this.fetch({
