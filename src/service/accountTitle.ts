@@ -55,12 +55,14 @@ export class AccountTitleService extends Service {
      * 科目分類削除
      * 不可逆的な物理削除です
      */
-    public async deleteAccounTitleCategoryByCodeValue(params: {
+    public async deleteAccounTitleCategory(params: {
+        project: { id: string };
         codeValue: string;
     }): Promise<void> {
         await this.fetch({
             uri: `/accountTitles/accountTitleCategory/${encodeURIComponent(String(params.codeValue))}`,
             method: 'DELETE',
+            body: params,
             expectedStatusCodes: [NO_CONTENT]
         });
     }
@@ -114,6 +116,23 @@ export class AccountTitleService extends Service {
     }
 
     /**
+     * 科目削除
+     * 不可逆的な物理削除です
+     */
+    public async deleteAccounTitleSet(params: {
+        project: { id: string };
+        codeValue: string;
+        inCodeSet: { codeValue: string };
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/accountTitles/accountTitleSet/${encodeURIComponent(String(params.codeValue))}`,
+            method: 'DELETE',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
      * 細目追加
      */
     public async create(
@@ -156,6 +175,28 @@ export class AccountTitleService extends Service {
             return {
                 data: await response.json()
             };
+        });
+    }
+
+    /**
+     * 細目削除
+     * 不可逆的な物理削除です
+     */
+    public async deleteByCodeValue(params: {
+        project: { id: string };
+        codeValue: string;
+        inCodeSet: {
+            codeValue: string;
+            inCodeSet: {
+                codeValue: string;
+            };
+        };
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/accountTitles/${encodeURIComponent(String(params.codeValue))}`,
+            method: 'DELETE',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
         });
     }
 }
