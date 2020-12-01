@@ -50,7 +50,7 @@ export class ProductService extends Service {
 
     public async update(params: IProduct): Promise<void> {
         await this.fetch({
-            uri: `/products/${encodeURIComponent(String((<any>params).id))}`,
+            uri: `/products/${encodeURIComponent(String(params.id))}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
