@@ -22,6 +22,7 @@ import { ReservationService } from './service/reservation';
 import { SellerService } from './service/seller';
 import { ServiceOutputService } from './service/serviceOutput';
 import { TaskService } from './service/task';
+import { TransactionService } from './service/transaction';
 import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
 import { MoneyTransferTransactionService } from './service/transaction/moneyTransfer';
 import { PayTransactionService } from './service/transaction/pay';
@@ -110,6 +111,11 @@ export namespace service {
      * タスクサービス
      */
     export class Task extends TaskService { }
+
+    /**
+     * 取引サービス
+     */
+    export class Transaction extends TransactionService { }
 
     export namespace transaction {
         /**
