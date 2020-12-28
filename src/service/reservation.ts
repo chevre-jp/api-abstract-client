@@ -89,14 +89,18 @@ export class ReservationService extends Service {
     }
 
     /**
-     * 入場する
+     * 予約を使用する(入場する)
      */
-    public async attendScreeningEvent(params: {
-        id: string;
+    public async use(params: {
+        agent?: any;
+        instrument?: { token?: string };
+        location?: { identifier?: string };
+        object: { id: string };
     }): Promise<void> {
         await this.fetch({
-            uri: `/reservations/eventReservation/screeningEvent/${encodeURIComponent(String(params.id))}/attended`,
+            uri: `/reservations/eventReservation/screeningEvent/${encodeURIComponent(String(params.object.id))}/attended`,
             method: 'PUT',
+            body: params,
             expectedStatusCodes: [NO_CONTENT]
         });
     }
