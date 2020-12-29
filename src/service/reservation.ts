@@ -3,7 +3,9 @@ import { NO_CONTENT, OK } from 'http-status';
 import * as factory from '../factory';
 import { Service } from '../service';
 
-export type IEventReservation = factory.reservation.IReservation<factory.reservationType.EventReservation>;
+export interface IUseAction {
+    id: string;
+}
 
 /**
  * 予約サービス
@@ -96,12 +98,19 @@ export class ReservationService extends Service {
         instrument?: { token?: string };
         location?: { identifier?: string };
         object: { id: string };
-    }): Promise<void> {
-        await this.fetch({
+    }): Promise<void | IUseAction> {
+        return this.fetch({
             uri: `/reservations/eventReservation/screeningEvent/${encodeURIComponent(String(params.object.id))}/attended`,
             method: 'PUT',
             body: params,
-            expectedStatusCodes: [NO_CONTENT]
-        });
+            expectedStatusCodes: [NO_CONTENT, OK]
+        })
+            .then(async (response) => {
+                if (response.status === OK) {
+                    return <Promise<IUseAction>>response.json();
+                } else {
+                    return;
+                }
+            });
     }
 }
