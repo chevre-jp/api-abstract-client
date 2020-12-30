@@ -1,4 +1,4 @@
-import { OK } from 'http-status';
+import { NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
 import { ISearchResult, Service } from '../service';
@@ -26,5 +26,18 @@ export class ActionService extends Service {
                     data: await response.json()
                 };
             });
+    }
+
+    /**
+     * アクション取消
+     */
+    public async cancelById(params: {
+        id: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/actions/${encodeURIComponent(String(params.id))}/${factory.actionStatusType.CanceledActionStatus}`,
+            method: 'PUT',
+            expectedStatusCodes: [NO_CONTENT]
+        });
     }
 }
