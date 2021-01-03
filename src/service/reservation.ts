@@ -1,7 +1,8 @@
 import { NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
-import { Service } from '../service';
+
+import { ISearchResult, Service } from '../service';
 
 export interface IUseAction {
     id: string;
@@ -16,9 +17,7 @@ export class ReservationService extends Service {
      */
     public async search<T extends factory.reservationType>(
         params: factory.reservation.ISearchConditions<T>
-    ): Promise<{
-        data: factory.reservation.IReservation<T>[];
-    }> {
+    ): Promise<ISearchResult<factory.reservation.IReservation<T>[]>> {
         return this.fetch({
             uri: '/reservations',
             method: 'GET',
@@ -26,6 +25,9 @@ export class ReservationService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => {
             return {
+                totalCount: (typeof response.headers.get('X-Total-Count') === 'string')
+                    ? Number(<string>response.headers.get('X-Total-Count'))
+                    : undefined,
                 data: await response.json()
             };
         });
