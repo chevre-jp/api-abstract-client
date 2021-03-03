@@ -4,9 +4,7 @@ import * as factory from '../factory';
 
 import { ISearchResult, Service } from '../service';
 
-export interface IUseAction {
-    id: string;
-}
+export type IUseAction = factory.action.consume.use.reservation.IAction;
 
 /**
  * 予約サービス
