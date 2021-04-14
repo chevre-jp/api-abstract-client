@@ -6,6 +6,7 @@ import * as factory from './factory';
 
 import { AuthClient } from './auth/authClient';
 
+import { AccountingReportService } from './service/accountingReport';
 import { AccountTitleService } from './service/accountTitle';
 import { ActionService } from './service/action';
 import { CategoryCodeService } from './service/categoryCode';
@@ -20,6 +21,7 @@ import { ProductService } from './service/product';
 import { ProgramMembershipService } from './service/programMembership';
 import { ProjectService } from './service/project';
 import { ReservationService } from './service/reservation';
+import { SalesReportService } from './service/salesReport';
 import { SellerService } from './service/seller';
 import { ServiceOutputService } from './service/serviceOutput';
 import { TaskService } from './service/task';
@@ -43,6 +45,10 @@ export import transporters = transporters;
 export abstract class Auth extends AuthClient { }
 
 export namespace service {
+    /**
+     * 経理レポートサービス
+     */
+    export class AccountingReport extends AccountingReportService { }
     /**
      * 勘定科目サービス
      */
@@ -101,7 +107,10 @@ export namespace service {
      * オファーカタログサービス
      */
     export class OfferCatalog extends OfferCatalogService { }
-
+    /**
+     * 売上レポートサービス
+     */
+    export class SalesReport extends SalesReportService { }
     /**
      * 販売者サービス
      */
