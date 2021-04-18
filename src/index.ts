@@ -11,6 +11,7 @@ import { AccountTitleService } from './service/accountTitle';
 import { ActionService } from './service/action';
 import { CategoryCodeService } from './service/categoryCode';
 import { CreativeWorkService } from './service/creativeWork';
+import { CustomerService } from './service/customer';
 import { EventService } from './service/event';
 import { OfferService } from './service/offer';
 import { OfferCatalogService } from './service/offerCatalog';
@@ -65,6 +66,10 @@ export namespace service {
      * 作品サービス
      */
     export class CreativeWork extends CreativeWorkService { }
+    /**
+     * 顧客サービス
+     */
+    export class Customer extends CustomerService { }
     /**
      * イベントサービス
      */
