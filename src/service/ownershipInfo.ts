@@ -1,7 +1,7 @@
-import { CREATED } from 'http-status';
+import { CREATED, OK } from 'http-status';
 
 import * as factory from '../factory';
-import { Service } from '../service';
+import { ISearchResult, Service } from '../service';
 
 export type IOwnershipInfo = factory.ownershipInfo.IOwnershipInfo<factory.ownershipInfo.IGood>;
 
@@ -20,5 +20,25 @@ export class OwnershipInfoService extends Service {
             body: params,
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
+    }
+
+    /**
+     * 所有権検索
+     */
+    public async search(
+        params: factory.ownershipInfo.ISearchConditions
+    ): Promise<ISearchResult<IOwnershipInfo[]>> {
+
+        return this.fetch({
+            uri: '/ownershipInfos',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        })
+            .then(async (response) => {
+                return {
+                    data: await response.json()
+                };
+            });
     }
 }

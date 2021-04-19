@@ -1,7 +1,7 @@
-import { CREATED } from 'http-status';
+import { CREATED, OK } from 'http-status';
 
 import * as factory from '../factory';
-import { Service } from '../service';
+import { ISearchResult, Service } from '../service';
 
 export interface ICreateParams {
     project: factory.project.IProject;
@@ -28,5 +28,25 @@ export class AuthorizationService extends Service {
             body: params,
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
+    }
+
+    /**
+     * 承認検索
+     */
+    public async search(
+        params: factory.authorization.ISearchConditions
+    ): Promise<ISearchResult<factory.authorization.IAuthorization[]>> {
+
+        return this.fetch({
+            uri: '/authorizations',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        })
+            .then(async (response) => {
+                return {
+                    data: await response.json()
+                };
+            });
     }
 }
