@@ -9,6 +9,7 @@ import { AuthClient } from './auth/authClient';
 import { AccountingReportService } from './service/accountingReport';
 import { AccountTitleService } from './service/accountTitle';
 import { ActionService } from './service/action';
+import { AuthorizationService } from './service/authorization';
 import { CategoryCodeService } from './service/categoryCode';
 import { CreativeWorkService } from './service/creativeWork';
 import { CustomerService } from './service/customer';
@@ -16,6 +17,7 @@ import { EventService } from './service/event';
 import { OfferService } from './service/offer';
 import { OfferCatalogService } from './service/offerCatalog';
 import { OrderService } from './service/order';
+import { OwnershipInfoService } from './service/ownershipInfo';
 import { PlaceService } from './service/place';
 import { PriceSpecificationService } from './service/priceSpecification';
 import { ProductService } from './service/product';
@@ -59,6 +61,10 @@ export namespace service {
      */
     export class Action extends ActionService { }
     /**
+     * 承認サービス
+     */
+    export class Authorization extends AuthorizationService { }
+    /**
      * カテゴリーコード`サービス
      */
     export class CategoryCode extends CategoryCodeService { }
@@ -78,6 +84,10 @@ export namespace service {
      * 注文サービス
      */
     export class Order extends OrderService { }
+    /**
+     * 所有権サービス
+     */
+    export class OwnershipInfo extends OwnershipInfoService { }
     /**
      * 場所サービス
      */
