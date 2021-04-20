@@ -1,4 +1,4 @@
-import { CREATED, OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
 import { ISearchResult, Service } from '../service';
@@ -40,5 +40,21 @@ export class OwnershipInfoService extends Service {
                     data: await response.json()
                 };
             });
+    }
+
+    /**
+     * 所有権変更
+     */
+    public async updateByIdentifier(params: {
+        project: { id: string };
+        identifier: string;
+        ownedThrough?: Date;
+    }): Promise<void> {
+        await this.fetch({
+            uri: '/ownershipInfos/updateByIdentifier',
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
     }
 }
