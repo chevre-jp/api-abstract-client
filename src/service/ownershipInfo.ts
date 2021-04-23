@@ -25,9 +25,11 @@ export class OwnershipInfoService extends Service {
     /**
      * 所有権検索
      */
-    public async search(
-        params: factory.ownershipInfo.ISearchConditions
-    ): Promise<ISearchResult<IOwnershipInfo[]>> {
+    public async search(params: factory.ownershipInfo.ISearchConditions & {
+        countDocuments?: '1';
+        ownedFromGte?: Date;
+        ownedFromLte?: Date;
+    }): Promise<ISearchResult<IOwnershipInfo[]>> {
 
         return this.fetch({
             uri: '/ownershipInfos',
@@ -37,6 +39,9 @@ export class OwnershipInfoService extends Service {
         })
             .then(async (response) => {
                 return {
+                    totalCount: (typeof response.headers.get('X-Total-Count') === 'string')
+                        ? Number(<string>response.headers.get('X-Total-Count'))
+                        : undefined,
                     data: await response.json()
                 };
             });
