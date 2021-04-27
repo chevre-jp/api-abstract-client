@@ -1,4 +1,4 @@
-import { CREATED, OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
 import { Service } from '../service';
@@ -31,13 +31,27 @@ export class ProjectService extends Service {
      */
     public async findById(params: {
         id: string;
+        $projection?: any;
     }): Promise<factory.project.IProject> {
         return this.fetch({
             uri: `/projects/${params.id}`,
             method: 'GET',
+            qs: params,
             expectedStatusCodes: [OK]
         })
             .then(async (response) => response.json());
+    }
+
+    /**
+     * プロジェクト更新
+     */
+    public async update(params: factory.project.IProject): Promise<void> {
+        await this.fetch({
+            uri: `/projects/${params.id}`,
+            method: 'PATCH',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
     }
 
     /**
