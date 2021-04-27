@@ -1,7 +1,7 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
-import { Service } from '../service';
+import { ISearchResult, Service } from '../service';
 
 export interface IGetHealthResult {
     version?: string;
@@ -24,6 +24,25 @@ export class ProjectService extends Service {
             expectedStatusCodes: [CREATED]
         })
             .then(async (response) => response.json());
+    }
+
+    /**
+     * プロジェクト検索
+     */
+    public async search(params: factory.project.ISearchConditions & {
+        $projection?: any;
+    }): Promise<ISearchResult<factory.project.IProject[]>> {
+        return this.fetch({
+            uri: '/projects',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        })
+            .then(async (response) => {
+                return {
+                    data: await response.json()
+                };
+            });
     }
 
     /**
