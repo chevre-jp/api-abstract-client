@@ -6,15 +6,15 @@ import { Service } from '../../service';
 /**
  * サービス登録取引サービス
  */
-export class RegisterServiceTransactionService extends Service {
+export class RegisterServiceAssetTransactionService extends Service {
     /**
      * 取引開始
      */
     public async start(
-        params: factory.transaction.registerService.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.registerService.ITransaction> {
+        params: factory.assetTransaction.registerService.IStartParamsWithoutDetail
+    ): Promise<factory.assetTransaction.registerService.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.transactionType.RegisterService}/start`,
+            uri: `/transactions/${factory.assetTransactionType.RegisterService}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -24,11 +24,11 @@ export class RegisterServiceTransactionService extends Service {
     /**
      * 取引確定
      */
-    public async confirm(params: factory.transaction.registerService.IConfirmParams): Promise<void> {
+    public async confirm(params: factory.assetTransaction.registerService.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof (<any>params).transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.RegisterService}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.transactionType.RegisterService}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/transactions/${factory.assetTransactionType.RegisterService}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -44,8 +44,8 @@ export class RegisterServiceTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.RegisterService}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.transactionType.RegisterService}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/transactions/${factory.assetTransactionType.RegisterService}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params

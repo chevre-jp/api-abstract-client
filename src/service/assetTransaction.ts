@@ -4,15 +4,15 @@ import * as factory from '../factory';
 import { ISearchResult, Service } from '../service';
 
 /**
- * 取引サービス
+ * 資産取引サービス
  */
-export class TransactionService extends Service {
+export class AssetTransactionService extends Service {
     /**
      * 取引検索
      */
-    public async search<T extends factory.transactionType>(
-        params: factory.transaction.ISearchConditions<T>
-    ): Promise<ISearchResult<factory.transaction.ITransaction<T>[]>> {
+    public async search<T extends factory.assetTransactionType>(
+        params: factory.assetTransaction.ISearchConditions<T>
+    ): Promise<ISearchResult<factory.assetTransaction.ITransaction<T>[]>> {
         return this.fetch({
             uri: '/transactions',
             method: 'GET',

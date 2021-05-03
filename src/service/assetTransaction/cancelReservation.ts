@@ -6,13 +6,13 @@ import { Service } from '../../service';
 /**
  * 予約キャンセル取引サービス
  */
-export class CancelReservationTransactionService extends Service {
+export class CancelReservationAssetTransactionService extends Service {
     /**
      * 取引を開始する
      */
     public async start(
-        params: factory.transaction.cancelReservation.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.cancelReservation.ITransaction> {
+        params: factory.assetTransaction.cancelReservation.IStartParamsWithoutDetail
+    ): Promise<factory.assetTransaction.cancelReservation.ITransaction> {
         return this.fetch({
             uri: '/transactions/cancelReservation/start',
             method: 'POST',
@@ -24,8 +24,8 @@ export class CancelReservationTransactionService extends Service {
     /**
      * 取引開始&確定
      */
-    public async startAndConfirm(params: factory.transaction.cancelReservation.IStartParamsWithoutDetail & {
-        potentialActions?: factory.transaction.cancelReservation.IPotentialActionsParams;
+    public async startAndConfirm(params: factory.assetTransaction.cancelReservation.IStartParamsWithoutDetail & {
+        potentialActions?: factory.assetTransaction.cancelReservation.IPotentialActionsParams;
     }): Promise<void> {
         await this.fetch({
             uri: '/transactions/cancelReservation/confirm',
@@ -38,7 +38,7 @@ export class CancelReservationTransactionService extends Service {
     /**
      * 取引確定
      */
-    public async confirm(params: factory.transaction.cancelReservation.IConfirmParams): Promise<void> {
+    public async confirm(params: factory.assetTransaction.cancelReservation.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',

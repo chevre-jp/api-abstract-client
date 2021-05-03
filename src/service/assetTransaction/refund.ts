@@ -7,15 +7,15 @@ import { Service } from '../../service';
 /**
  * 返金取引サービス
  */
-export class RefundTransactionService extends Service {
+export class RefundAssetTransactionService extends Service {
     /**
      * 取引開始
      */
     public async start(
-        params: factory.transaction.refund.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.refund.ITransaction> {
+        params: factory.assetTransaction.refund.IStartParamsWithoutDetail
+    ): Promise<factory.assetTransaction.refund.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.transactionType.Refund}/start`,
+            uri: `/transactions/${factory.assetTransactionType.Refund}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -25,11 +25,11 @@ export class RefundTransactionService extends Service {
     /**
      * 取引確定
      */
-    public async confirm(params: factory.transaction.refund.IConfirmParams): Promise<void> {
+    public async confirm(params: factory.assetTransaction.refund.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.Refund}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.transactionType.Refund}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/transactions/${factory.assetTransactionType.Refund}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.Refund}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -45,8 +45,8 @@ export class RefundTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.Refund}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.transactionType.Refund}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/transactions/${factory.assetTransactionType.Refund}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.Refund}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params

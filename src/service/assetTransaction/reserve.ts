@@ -6,11 +6,13 @@ import { Service } from '../../service';
 /**
  * 予約取引サービス
  */
-export class ReserveTransactionService extends Service {
+export class ReserveAssetTransactionService extends Service {
     /**
      * 取引を開始する
      */
-    public async start(params: factory.transaction.reserve.IStartParamsWithoutDetail): Promise<factory.transaction.reserve.ITransaction> {
+    public async start(
+        params: factory.assetTransaction.reserve.IStartParamsWithoutDetail
+    ): Promise<factory.assetTransaction.reserve.ITransaction> {
         return this.fetch({
             uri: '/transactions/reserve/start',
             method: 'POST',
@@ -19,7 +21,7 @@ export class ReserveTransactionService extends Service {
         }).then(async (response) => response.json());
     }
 
-    public async startWithNoResponse(params: factory.transaction.reserve.IStartParamsWithoutDetail): Promise<void> {
+    public async startWithNoResponse(params: factory.assetTransaction.reserve.IStartParamsWithoutDetail): Promise<void> {
         await this.fetch({
             uri: '/transactions/reserve/start',
             method: 'POST',
@@ -32,7 +34,7 @@ export class ReserveTransactionService extends Service {
     /**
      * 取引確定
      */
-    public async confirm(params: factory.transaction.reserve.IConfirmParams): Promise<void> {
+    public async confirm(params: factory.assetTransaction.reserve.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
                 ? `/transactions/reserve/${params.transactionNumber}/confirm?transactionNumber=1`

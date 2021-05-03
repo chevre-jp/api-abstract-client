@@ -7,15 +7,15 @@ import { Service } from '../../service';
 /**
  * 通貨転送取引サービス
  */
-export class MoneyTransferTransactionService extends Service {
+export class MoneyTransferAssetTransactionService extends Service {
     /**
      * 取引開始
      */
     public async start(
-        params: factory.transaction.moneyTransfer.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.moneyTransfer.ITransaction> {
+        params: factory.assetTransaction.moneyTransfer.IStartParamsWithoutDetail
+    ): Promise<factory.assetTransaction.moneyTransfer.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.transactionType.MoneyTransfer}/start`,
+            uri: `/transactions/${factory.assetTransactionType.MoneyTransfer}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -31,8 +31,8 @@ export class MoneyTransferTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.MoneyTransfer}/${params.transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.transactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/transactions/${factory.assetTransactionType.MoneyTransfer}/${params.transactionNumber}/confirm?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -48,8 +48,8 @@ export class MoneyTransferTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.MoneyTransfer}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.transactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/transactions/${factory.assetTransactionType.MoneyTransfer}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
