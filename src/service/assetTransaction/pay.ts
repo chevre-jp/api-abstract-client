@@ -7,7 +7,7 @@ import { Service } from '../../service';
 /**
  * 決済取引サービス
  */
-export class PayTransactionService extends Service {
+export class PayAssetTransactionService extends Service {
     /**
      * 決済方法認証
      */
@@ -15,7 +15,7 @@ export class PayTransactionService extends Service {
         params: factory.action.check.paymentMethod.movieTicket.IAttributes
     ): Promise<factory.action.check.paymentMethod.movieTicket.IAction> {
         return this.fetch({
-            uri: `/transactions/${factory.transactionType.Pay}/check`,
+            uri: `/transactions/${factory.assetTransactionType.Pay}/check`,
             method: 'POST',
             expectedStatusCodes: [CREATED],
             body: params
@@ -27,10 +27,10 @@ export class PayTransactionService extends Service {
      * 取引開始
      */
     public async start(
-        params: factory.transaction.pay.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.pay.ITransaction> {
+        params: factory.assetTransaction.pay.IStartParamsWithoutDetail
+    ): Promise<factory.assetTransaction.pay.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.transactionType.Pay}/start`,
+            uri: `/transactions/${factory.assetTransactionType.Pay}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -40,11 +40,11 @@ export class PayTransactionService extends Service {
     /**
      * 取引確定
      */
-    public async confirm(params: factory.transaction.pay.IConfirmParams): Promise<void> {
+    public async confirm(params: factory.assetTransaction.pay.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.Pay}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.transactionType.Pay}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/transactions/${factory.assetTransactionType.Pay}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -60,8 +60,8 @@ export class PayTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.transactionType.Pay}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.transactionType.Pay}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/transactions/${factory.assetTransactionType.Pay}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/transactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params

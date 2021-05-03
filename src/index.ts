@@ -9,6 +9,13 @@ import { AuthClient } from './auth/authClient';
 import { AccountingReportService } from './service/accountingReport';
 import { AccountTitleService } from './service/accountTitle';
 import { ActionService } from './service/action';
+import { AssetTransactionService } from './service/assetTransaction';
+import { CancelReservationAssetTransactionService } from './service/assetTransaction/cancelReservation';
+import { MoneyTransferAssetTransactionService } from './service/assetTransaction/moneyTransfer';
+import { PayAssetTransactionService } from './service/assetTransaction/pay';
+import { RefundAssetTransactionService } from './service/assetTransaction/refund';
+import { RegisterServiceAssetTransactionService } from './service/assetTransaction/registerService';
+import { ReserveAssetTransactionService } from './service/assetTransaction/reserve';
 import { AuthorizationService } from './service/authorization';
 import { CategoryCodeService } from './service/categoryCode';
 import { CreativeWorkService } from './service/creativeWork';
@@ -28,13 +35,6 @@ import { SalesReportService } from './service/salesReport';
 import { SellerService } from './service/seller';
 import { ServiceOutputService } from './service/serviceOutput';
 import { TaskService } from './service/task';
-import { TransactionService } from './service/transaction';
-import { CancelReservationTransactionService } from './service/transaction/cancelReservation';
-import { MoneyTransferTransactionService } from './service/transaction/moneyTransfer';
-import { PayTransactionService } from './service/transaction/pay';
-import { RefundTransactionService } from './service/transaction/refund';
-import { RegisterServiceTransactionService } from './service/transaction/registerService';
-import { ReserveTransactionService } from './service/transaction/reserve';
 import { TransactionNumberService } from './service/transactionNumber';
 
 import * as transporters from './transporters';
@@ -144,33 +144,33 @@ export namespace service {
     /**
      * 取引サービス
      */
-    export class Transaction extends TransactionService { }
+    export class AssetTransaction extends AssetTransactionService { }
 
-    export namespace transaction {
+    export namespace assetTransaction {
         /**
          * 予約キャンセル取引サービス
          */
-        export class CancelReservation extends CancelReservationTransactionService { }
+        export class CancelReservation extends CancelReservationAssetTransactionService { }
         /**
          * 通貨転送取引サービス
          */
-        export class MoneyTransfer extends MoneyTransferTransactionService { }
+        export class MoneyTransfer extends MoneyTransferAssetTransactionService { }
         /**
          * 決済取引サービス
          */
-        export class Pay extends PayTransactionService { }
+        export class Pay extends PayAssetTransactionService { }
         /**
          * 返金取引サービス
          */
-        export class Refund extends RefundTransactionService { }
+        export class Refund extends RefundAssetTransactionService { }
         /**
          * サービス登録取引
          */
-        export class RegisterService extends RegisterServiceTransactionService { }
+        export class RegisterService extends RegisterServiceAssetTransactionService { }
         /**
          * 予約取引サービス
          */
-        export class Reserve extends ReserveTransactionService { }
+        export class Reserve extends ReserveAssetTransactionService { }
     }
 
     /**
