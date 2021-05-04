@@ -43,7 +43,8 @@ describe('fetch()', () => {
         const auth = new StubAuthClient();
         const service = new Service({
             auth: auth,
-            endpoint: API_ENDPOINT
+            endpoint: API_ENDPOINT,
+            project: { id: '' }
         });
 
         sandbox.mock(service.options.auth).expects('fetch').once().resolves(response);
@@ -59,7 +60,8 @@ describe('fetch()', () => {
 
         const service = new Service({
             endpoint: API_ENDPOINT,
-            transporter: new StubTransporter(response)
+            transporter: new StubTransporter(response),
+            project: { id: '' }
         });
 
         const result = await service.fetch(<any>{});
@@ -81,7 +83,8 @@ describe('fetch()', () => {
         const auth = new StubAuthClient();
         const service = new Service({
             auth: auth,
-            endpoint: API_ENDPOINT
+            endpoint: API_ENDPOINT,
+            project: { id: '' }
         });
 
         sandbox.mock(service.options.auth).expects('fetch').once()
@@ -106,7 +109,8 @@ describe('fetch()', () => {
         const auth = new StubAuthClient();
         const service = new Service({
             auth: auth,
-            endpoint: API_ENDPOINT
+            endpoint: API_ENDPOINT,
+            project: { id: '' }
         });
 
         sandbox.mock(service.options.auth).expects('fetch').once()
@@ -121,7 +125,8 @@ describe('fetch()', () => {
     it('authオプションもtransporterオプションも未定義であれば、内部的にDefaultTransporterインスタンスが生成されてfetchメソッドが呼ばれるはず', async () => {
         const options = {};
         const service = new Service({
-            endpoint: API_ENDPOINT
+            endpoint: API_ENDPOINT,
+            project: { id: '' }
         });
 
         sandbox.mock(DefaultTransporter.prototype).expects('fetch').once();
