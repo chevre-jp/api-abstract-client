@@ -18,6 +18,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Security
 
+## v3.71.1 - 2021-05-04
+
+### Changed
+
+- サービスインスタンスにプロジェクトを指定できるように調整
+
 ## v3.71.0 - 2021-05-03
 
 ### Changed

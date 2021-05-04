@@ -21,6 +21,10 @@ export interface IOptions {
      * transporter object
      */
     transporter?: Transporter;
+    /**
+     * サービスを使用するプロジェクト
+     */
+    project: { id: string };
 }
 
 export interface IFetchOptions {
@@ -57,7 +61,12 @@ export class Service {
             ...options
         };
 
-        const baseUrl = this.options.endpoint;
+        let baseUrl = this.options.endpoint;
+        // tslint:disable-next-line:no-single-line-block-comment
+        /* istanbul ignore else */
+        if (typeof this.options?.project?.id === 'string' && this.options.project.id.length > 0) {
+            baseUrl = `${baseUrl}/projects/${this.options.project.id}`;
+        }
         let url = `${baseUrl}${defaultOptions.uri}`;
 
         const querystrings = qs.stringify(defaultOptions.qs);
