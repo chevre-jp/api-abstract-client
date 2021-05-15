@@ -62,6 +62,7 @@
     "@types/request-promise-native": "^1.0.17",
     "@types/sinon": "^4.3.3",
     "coveralls": "^3.1.0",
+    "fetch-mock": "^6.5.2",
     "http-server": "^0.11.1",
     "mocha": "^5.2.0",
     "nock": "^9.6.1",
@@ -76,7 +77,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@chevre/factory": "4.100.0",
+    "@chevre/factory": "4.101.0",
     "debug": "^3.2.6",
     "http-status": "^1.4.2",
     "isomorphic-fetch": "^2.2.1",
