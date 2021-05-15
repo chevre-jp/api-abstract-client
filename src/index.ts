@@ -37,6 +37,7 @@ import { SellerService } from './service/seller';
 import { ServiceOutputService } from './service/serviceOutput';
 import { TaskService } from './service/task';
 import { TransactionNumberService } from './service/transactionNumber';
+import { UserPoolService } from './service/userPool';
 
 import * as transporters from './transporters';
 
@@ -182,4 +183,9 @@ export namespace service {
      * 取引番号サービス
      */
     export class TransactionNumber extends TransactionNumberService { }
+
+    /**
+     * Cognitoユーザープールサービス
+     */
+    export class UserPool extends UserPoolService { }
 }
