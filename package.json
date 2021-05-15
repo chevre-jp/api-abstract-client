@@ -49,6 +49,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/debug": "0.0.30",
+    "@types/fetch-mock": "^6.0.5",
     "@types/form-data": "^2.5.0",
     "@types/http-status": "^0.2.30",
     "@types/isomorphic-fetch": "0.0.34",
