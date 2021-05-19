@@ -1,4 +1,4 @@
-import { NO_CONTENT, OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import * as factory from '../factory';
 
@@ -56,6 +56,57 @@ export class AccountService extends Service {
             uri: '/accountActions/sync',
             method: 'PUT',
             body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
+     * 口座を開設する
+     */
+    public async open(params: IOpenParams[]): Promise<factory.account.IAccount | factory.account.IAccount[]> {
+        return this.fetch({
+            uri: '/accounts',
+            method: 'POST',
+            body: params,
+            expectedStatusCodes: [CREATED]
+        })
+            .then(async (response) => response.json());
+    }
+
+    /**
+     * 口座編集
+     * 名義変更などに使用
+     */
+    public async update(params: {
+        /**
+         * 口座番号
+         */
+        accountNumber: string;
+        /**
+         * 口座名義
+         */
+        name?: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/accounts/${params.accountNumber}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
+    /**
+     * 口座を解約する
+     */
+    public async close(params: {
+        /**
+         * 口座番号
+         */
+        accountNumber: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/accounts/${params.accountNumber}/close`,
+            method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });
     }
