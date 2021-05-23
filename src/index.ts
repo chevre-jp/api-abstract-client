@@ -24,6 +24,7 @@ import { CreativeWorkService } from './service/creativeWork';
 import { CustomerService } from './service/customer';
 import { EventService } from './service/event';
 import { IAMService } from './service/iam';
+import { MeService } from './service/me';
 import { OfferService } from './service/offer';
 import { OfferCatalogService } from './service/offerCatalog';
 import { OrderService } from './service/order';
@@ -96,6 +97,10 @@ export namespace service {
      * IAMサービス
      */
     export class IAM extends IAMService { }
+    /**
+     * Meサービス
+     */
+    export class Me extends MeService { }
     /**
      * 注文サービス
      */
