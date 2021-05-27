@@ -61,6 +61,32 @@ export class ReservationService extends Service {
     }
 
     /**
+     * 予約に対する使用アクション検索
+     */
+    public async searchUseActions(params: {
+        object: {
+            /**
+             * 予約ID
+             */
+            id?: string;
+        };
+        startFrom?: Date;
+        startThrough?: Date;
+    }): Promise<ISearchResult<factory.action.IAction<factory.action.IAttributes<factory.actionType, any, any>>[]>> {
+        return this.fetch({
+            uri: `/reservations/${String(params.object?.id)}/actions/use`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        })
+            .then(async (response) => {
+                return {
+                    data: await response.json()
+                };
+            });
+    }
+
+    /**
      * 予約IDあるいは予約番号指定でチェックイン(発券)する
      */
     public async checkInScreeningEventReservations(params: {
