@@ -1,8 +1,7 @@
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
+import * as factory from '../factory';
 import { ISearchResult, Service } from '../service';
-
-export type ICustomer = any;
 
 /**
  * 顧客サービス
@@ -11,9 +10,7 @@ export class CustomerService extends Service {
     /**
      * 顧客作成
      */
-    public async create(
-        params: ICustomer
-    ): Promise<ICustomer> {
+    public async create(params: factory.customer.ICustomer): Promise<factory.customer.ICustomer> {
         return this.fetch({
             uri: '/customers',
             method: 'POST',
@@ -26,9 +23,7 @@ export class CustomerService extends Service {
     /**
      * 顧客取得
      */
-    public async findById(params: {
-        id: string;
-    }): Promise<ICustomer> {
+    public async findById(params: { id: string }): Promise<factory.customer.ICustomer> {
         return this.fetch({
             uri: `/customers/${params.id}`,
             method: 'GET',
@@ -41,9 +36,7 @@ export class CustomerService extends Service {
     /**
      * 顧客検索
      */
-    public async search(
-        params: any
-    ): Promise<ISearchResult<ICustomer[]>> {
+    public async search(params: factory.customer.ISearchConditions): Promise<ISearchResult<factory.customer.ICustomer[]>> {
         return this.fetch({
             uri: '/customers',
             method: 'GET',
@@ -62,7 +55,7 @@ export class CustomerService extends Service {
      */
     public async update(params: {
         id: string;
-        attributes: ICustomer;
+        attributes: factory.customer.ICustomer;
     }): Promise<void> {
         await this.fetch({
             uri: `/customers/${params.id}`,
@@ -75,9 +68,7 @@ export class CustomerService extends Service {
     /**
      * 顧客削除
      */
-    public async deleteById(params: {
-        id: string;
-    }): Promise<void> {
+    public async deleteById(params: { id: string }): Promise<void> {
         await this.fetch({
             uri: `/customers/${params.id}`,
             method: 'DELETE',
