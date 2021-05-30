@@ -10,6 +10,9 @@ import { AccountService } from './service/account';
 import { AccountActionService } from './service/accountAction';
 import { AccountingReportService } from './service/accountingReport';
 import { AccountTitleService } from './service/accountTitle';
+import { DepositTransactionService } from './service/accountTransaction/deposit';
+import { TransferTransactionService } from './service/accountTransaction/transfer';
+import { WithdrawTransactionService } from './service/accountTransaction/withdraw';
 import { ActionService } from './service/action';
 import { AssetTransactionService } from './service/assetTransaction';
 import { CancelReservationAssetTransactionService } from './service/assetTransaction/cancelReservation';
@@ -161,6 +164,21 @@ export namespace service {
      * タスクサービス
      */
     export class Task extends TaskService { }
+
+    export namespace accountTransaction {
+        /**
+         * 入金取引サービス
+         */
+        export class Deposit extends DepositTransactionService { }
+        /**
+         * 出金取引サービス
+         */
+        export class Withdraw extends WithdrawTransactionService { }
+        /**
+         * 転送取引サービス
+         */
+        export class Transfer extends TransferTransactionService { }
+    }
 
     /**
      * 取引サービス
