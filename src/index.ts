@@ -85,7 +85,7 @@ export namespace service {
      */
     export class CategoryCode extends CategoryCodeService { }
     /**
-     * 作品サービス
+     * コンテンツサービス
      */
     export class CreativeWork extends CreativeWorkService { }
     /**
