@@ -4,7 +4,7 @@ import * as factory from '../factory';
 import { Service } from '../service';
 
 /**
- * 作品サービス
+ * コンテンツサービス
  */
 export class CreativeWorkService extends Service {
     public async createMovie(
