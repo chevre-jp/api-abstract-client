@@ -98,7 +98,14 @@ export class EventService extends Service {
      */
     public async updatePartially<T extends factory.eventType>(params: {
         id: string;
-        attributes: factory.event.IAttributes<T>;
+        // attributes: factory.event.IAttributes<T>;
+        attributes: {
+            typeOf: T;
+            eventStatus?: factory.eventStatusType;
+            onUpdated?: {
+                sendEmailMessage?: factory.action.transfer.send.message.email.IAttributes[];
+            };
+        };
     }): Promise<void> {
         await this.fetch({
             uri: `/events/${encodeURIComponent(String(params.id))}`,
