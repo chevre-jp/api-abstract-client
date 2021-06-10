@@ -14,7 +14,7 @@ export class RegisterServiceAssetTransactionService extends Service {
         params: factory.assetTransaction.registerService.IStartParamsWithoutDetail
     ): Promise<factory.assetTransaction.registerService.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.assetTransactionType.RegisterService}/start`,
+            uri: `/assetTransactions/${factory.assetTransactionType.RegisterService}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -27,8 +27,8 @@ export class RegisterServiceAssetTransactionService extends Service {
     public async confirm(params: factory.assetTransaction.registerService.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof (<any>params).transactionNumber === 'string')
-                ? `/transactions/${factory.assetTransactionType.RegisterService}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/assetTransactions/${factory.assetTransactionType.RegisterService}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                : `/assetTransactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -44,8 +44,8 @@ export class RegisterServiceAssetTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.assetTransactionType.RegisterService}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/assetTransactions/${factory.assetTransactionType.RegisterService}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/assetTransactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params

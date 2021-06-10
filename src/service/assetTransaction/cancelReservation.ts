@@ -14,7 +14,7 @@ export class CancelReservationAssetTransactionService extends Service {
         params: factory.assetTransaction.cancelReservation.IStartParamsWithoutDetail
     ): Promise<factory.assetTransaction.cancelReservation.ITransaction> {
         return this.fetch({
-            uri: '/transactions/cancelReservation/start',
+            uri: '/assetTransactions/cancelReservation/start',
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -28,7 +28,7 @@ export class CancelReservationAssetTransactionService extends Service {
         potentialActions?: factory.assetTransaction.cancelReservation.IPotentialActionsParams;
     }): Promise<void> {
         await this.fetch({
-            uri: '/transactions/cancelReservation/confirm',
+            uri: '/assetTransactions/cancelReservation/confirm',
             method: 'POST',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -40,7 +40,7 @@ export class CancelReservationAssetTransactionService extends Service {
      */
     public async confirm(params: factory.assetTransaction.cancelReservation.IConfirmParams): Promise<void> {
         await this.fetch({
-            uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/confirm`,
+            uri: `/assetTransactions/cancelReservation/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -52,7 +52,7 @@ export class CancelReservationAssetTransactionService extends Service {
      */
     public async cancel(params: { id: string }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/cancelReservation/${encodeURIComponent(String(params.id))}/cancel`,
+            uri: `/assetTransactions/cancelReservation/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params

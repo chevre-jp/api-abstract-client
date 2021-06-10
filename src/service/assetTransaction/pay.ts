@@ -15,7 +15,7 @@ export class PayAssetTransactionService extends Service {
         params: factory.action.check.paymentMethod.movieTicket.IAttributes
     ): Promise<factory.action.check.paymentMethod.movieTicket.IAction> {
         return this.fetch({
-            uri: `/transactions/${factory.assetTransactionType.Pay}/check`,
+            uri: `/assetTransactions/${factory.assetTransactionType.Pay}/check`,
             method: 'POST',
             expectedStatusCodes: [CREATED],
             body: params
@@ -30,7 +30,7 @@ export class PayAssetTransactionService extends Service {
         params: factory.assetTransaction.pay.IStartParamsWithoutDetail
     ): Promise<factory.assetTransaction.pay.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.assetTransactionType.Pay}/start`,
+            uri: `/assetTransactions/${factory.assetTransactionType.Pay}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -43,8 +43,8 @@ export class PayAssetTransactionService extends Service {
     public async confirm(params: factory.assetTransaction.pay.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.assetTransactionType.Pay}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/assetTransactions/${factory.assetTransactionType.Pay}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                : `/assetTransactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -60,8 +60,8 @@ export class PayAssetTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.assetTransactionType.Pay}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/assetTransactions/${factory.assetTransactionType.Pay}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/assetTransactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params

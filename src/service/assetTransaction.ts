@@ -14,7 +14,7 @@ export class AssetTransactionService extends Service {
         params: factory.assetTransaction.ISearchConditions<T>
     ): Promise<ISearchResult<factory.assetTransaction.ITransaction<T>[]>> {
         return this.fetch({
-            uri: '/transactions',
+            uri: '/assetTransactions',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]

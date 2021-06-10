@@ -15,7 +15,7 @@ export class MoneyTransferAssetTransactionService extends Service {
         params: factory.assetTransaction.moneyTransfer.IStartParamsWithoutDetail
     ): Promise<factory.assetTransaction.moneyTransfer.ITransaction> {
         return this.fetch({
-            uri: `/transactions/${factory.assetTransactionType.MoneyTransfer}/start`,
+            uri: `/assetTransactions/${factory.assetTransactionType.MoneyTransfer}/start`,
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -31,8 +31,8 @@ export class MoneyTransferAssetTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.assetTransactionType.MoneyTransfer}/${params.transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/${factory.assetTransactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/assetTransactions/${factory.assetTransactionType.MoneyTransfer}/${params.transactionNumber}/confirm?transactionNumber=1`
+                : `/assetTransactions/${factory.assetTransactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -48,8 +48,8 @@ export class MoneyTransferAssetTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/${factory.assetTransactionType.MoneyTransfer}/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/${factory.assetTransactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/assetTransactions/${factory.assetTransactionType.MoneyTransfer}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/assetTransactions/${factory.assetTransactionType.MoneyTransfer}/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
