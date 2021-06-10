@@ -14,7 +14,7 @@ export class ReserveAssetTransactionService extends Service {
         params: factory.assetTransaction.reserve.IStartParamsWithoutDetail
     ): Promise<factory.assetTransaction.reserve.ITransaction> {
         return this.fetch({
-            uri: '/transactions/reserve/start',
+            uri: '/assetTransactions/reserve/start',
             method: 'POST',
             body: params,
             expectedStatusCodes: [OK]
@@ -23,7 +23,7 @@ export class ReserveAssetTransactionService extends Service {
 
     public async startWithNoResponse(params: factory.assetTransaction.reserve.IStartParamsWithoutDetail): Promise<void> {
         await this.fetch({
-            uri: '/transactions/reserve/start',
+            uri: '/assetTransactions/reserve/start',
             method: 'POST',
             body: params,
             qs: { expectsNoContent: '1' },
@@ -37,8 +37,8 @@ export class ReserveAssetTransactionService extends Service {
     public async confirm(params: factory.assetTransaction.reserve.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/reserve/${params.transactionNumber}/confirm?transactionNumber=1`
-                : `/transactions/reserve/${encodeURIComponent(String(params.id))}/confirm`,
+                ? `/assetTransactions/reserve/${params.transactionNumber}/confirm?transactionNumber=1`
+                : `/assetTransactions/reserve/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
@@ -54,8 +54,8 @@ export class ReserveAssetTransactionService extends Service {
     }): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/transactions/reserve/${params.transactionNumber}/cancel?transactionNumber=1`
-                : `/transactions/reserve/${encodeURIComponent(String(params.id))}/cancel`,
+                ? `/assetTransactions/reserve/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/assetTransactions/reserve/${encodeURIComponent(String(params.id))}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: params
