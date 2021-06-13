@@ -28,7 +28,7 @@ export class RefundAssetTransactionService extends Service {
     public async confirm(params: factory.assetTransaction.refund.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/assetTransactions/${factory.assetTransactionType.Refund}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                ? `/assetTransactions/${factory.assetTransactionType.Refund}/${params.transactionNumber}/confirm?transactionNumber=1`
                 : `/assetTransactions/${factory.assetTransactionType.Refund}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],

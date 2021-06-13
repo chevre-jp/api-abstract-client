@@ -1,6 +1,7 @@
 import { CREATED, OK } from 'http-status';
 
-import { Service } from '../service';
+import * as factory from '../factory';
+import { ISearchResult, Service } from '../service';
 
 export interface IPublishIdentifierParams {
     project: { id: string };
@@ -28,9 +29,7 @@ export class ServiceOutputService extends Service {
     /**
      * 検索
      */
-    public async search(params: any): Promise<{
-        data: any[];
-    }> {
+    public async search(params: factory.product.IServiceOutputSearchConditions): Promise<ISearchResult<factory.product.IServiceOutput[]>> {
         return this.fetch({
             uri: '/serviceOutputs',
             method: 'GET',
