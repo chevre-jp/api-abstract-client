@@ -26,8 +26,8 @@ export class RegisterServiceAssetTransactionService extends Service {
      */
     public async confirm(params: factory.assetTransaction.registerService.IConfirmParams): Promise<void> {
         await this.fetch({
-            uri: (typeof (<any>params).transactionNumber === 'string')
-                ? `/assetTransactions/${factory.assetTransactionType.RegisterService}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+            uri: (typeof params.transactionNumber === 'string')
+                ? `/assetTransactions/${factory.assetTransactionType.RegisterService}/${params.transactionNumber}/confirm?transactionNumber=1`
                 : `/assetTransactions/${factory.assetTransactionType.RegisterService}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],

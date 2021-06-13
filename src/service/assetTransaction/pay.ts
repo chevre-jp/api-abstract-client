@@ -43,7 +43,7 @@ export class PayAssetTransactionService extends Service {
     public async confirm(params: factory.assetTransaction.pay.IConfirmParams): Promise<void> {
         await this.fetch({
             uri: (typeof params.transactionNumber === 'string')
-                ? `/assetTransactions/${factory.assetTransactionType.Pay}/${(<any>params).transactionNumber}/confirm?transactionNumber=1`
+                ? `/assetTransactions/${factory.assetTransactionType.Pay}/${params.transactionNumber}/confirm?transactionNumber=1`
                 : `/assetTransactions/${factory.assetTransactionType.Pay}/${encodeURIComponent(String(params.id))}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],

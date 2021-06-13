@@ -35,7 +35,6 @@ import { OwnershipInfoService } from './service/ownershipInfo';
 import { PlaceService } from './service/place';
 import { PriceSpecificationService } from './service/priceSpecification';
 import { ProductService } from './service/product';
-import { ProgramMembershipService } from './service/programMembership';
 import { ProjectService } from './service/project';
 import { ReservationService } from './service/reservation';
 import { SalesReportService } from './service/salesReport';
@@ -124,10 +123,6 @@ export namespace service {
      * プロダクトサービス
      */
     export class Product extends ProductService { }
-    /**
-     * メンバーシッププログラムサービス
-     */
-    export class ProgramMembership extends ProgramMembershipService { }
     /**
      * プロジェクトサービス
      */
