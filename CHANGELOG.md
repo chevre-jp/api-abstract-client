@@ -8,8 +8,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- 注文に対するアクション検索を追加
-
 ### Changed
 
 ### Deprecated
@@ -19,6 +17,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Fixed
 
 ### Security
+
+## v3.86.0 - 2021-06-14
+
+### Added
+
+- 注文に対するアクション検索を追加
 
 ## v3.85.6 - 2021-06-13
 
